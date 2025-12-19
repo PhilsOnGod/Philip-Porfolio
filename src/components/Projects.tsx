@@ -24,24 +24,21 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-24 px-4 relative">
-      {/* Background decorations */}
+    <section id="projects" className="py-12 md:py-24 px-4 relative">
       <div className="absolute inset-0 bg-gradient-mesh opacity-30 pointer-events-none" />
       
       <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="text-center space-y-4 mb-16">
-          <Badge variant="outline" className="border-primary/50 text-primary px-4 py-1 mb-4">
+        <div className="text-center space-y-2 md:space-y-4 mb-8 md:mb-16">
+          <Badge variant="outline" className="border-primary/50 text-primary px-3 py-0.5 text-xs md:text-sm">
             Portfolio
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold">
+          <h2 className="text-2xl md:text-5xl font-bold">
             Featured <span className="text-gradient-primary">Projects</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Real-world applications I've built to solve business problems
-          </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        {/* Projects - Stack on mobile */}
+        <div className="grid gap-4 md:gap-8 lg:grid-cols-2">
           {projects.map((project, index) => {
             const Icon = project.icon;
             const isSecondary = project.color === "secondary";
@@ -52,62 +49,55 @@ const Projects = () => {
                 className="glass glass-hover overflow-hidden group relative animate-fade-in"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
-                {/* Gradient border effect */}
-                <div className={`absolute inset-0 bg-gradient-${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-lg`} />
-                
-                {/* Icon header */}
-                <div className={`p-6 ${isSecondary ? 'bg-secondary/10' : 'bg-primary/10'} border-b border-border/50`}>
-                  <div className="flex items-center gap-4">
-                    <div className={`p-4 rounded-xl ${isSecondary ? 'bg-secondary/20 text-secondary' : 'bg-primary/20 text-primary'} group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className="w-8 h-8" />
+                {/* Icon header - compact on mobile */}
+                <div className={`p-3 md:p-6 ${isSecondary ? 'bg-secondary/10' : 'bg-primary/10'} border-b border-border/50`}>
+                  <div className="flex items-center gap-3">
+                    <div className={`p-2 md:p-4 rounded-lg md:rounded-xl ${isSecondary ? 'bg-secondary/20 text-secondary' : 'bg-primary/20 text-primary'}`}>
+                      <Icon className="w-5 h-5 md:w-8 md:h-8" />
                     </div>
-                    <div>
-                      <CardTitle className="text-2xl group-hover:text-primary transition-colors">
-                        {project.title}
-                      </CardTitle>
-                    </div>
+                    <CardTitle className="text-base md:text-2xl">{project.title}</CardTitle>
                   </div>
                 </div>
                 
-                <CardHeader className="pb-2">
-                  <CardDescription className="text-base text-foreground/70 leading-relaxed">
+                <CardContent className="p-3 md:p-6 space-y-3 md:space-y-6">
+                  <p className="text-xs md:text-base text-foreground/70 leading-relaxed line-clamp-2 md:line-clamp-none">
                     {project.description}
-                  </CardDescription>
-                </CardHeader>
-                
-                <CardContent className="space-y-6">
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech) => (
+                  </p>
+                  
+                  {/* Tech badges - smaller on mobile */}
+                  <div className="flex flex-wrap gap-1 md:gap-2">
+                    {project.tech.slice(0, 4).map((tech) => (
                       <Badge 
                         key={tech} 
                         variant="outline" 
-                        className={`${isSecondary ? 'border-secondary/30 hover:bg-secondary/10' : 'border-primary/30 hover:bg-primary/10'} transition-colors`}
+                        className={`text-[10px] md:text-sm px-2 py-0 md:px-3 md:py-0.5 ${isSecondary ? 'border-secondary/30' : 'border-primary/30'}`}
                       >
                         {tech}
                       </Badge>
                     ))}
                   </div>
                   
-                  <div className="flex gap-3 pt-2">
+                  {/* Buttons - horizontal compact */}
+                  <div className="flex gap-2">
                     <Button 
                       size="sm" 
-                      className={`${isSecondary ? 'bg-gradient-secondary' : 'bg-gradient-primary'} hover:shadow-glow transition-all duration-300`}
+                      className={`${isSecondary ? 'bg-gradient-secondary' : 'bg-gradient-primary'} text-xs md:text-sm px-3 md:px-4`}
                       asChild
                     >
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        View Project
+                        <ExternalLink className="w-3 h-3 md:w-4 md:h-4 mr-1" />
+                        View
                       </a>
                     </Button>
                     <Button 
                       size="sm" 
                       variant="outline"
-                      className="border-border hover:border-primary hover:bg-primary/10"
+                      className="border-border text-xs md:text-sm px-3 md:px-4"
                       asChild
                     >
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Github className="w-4 h-4 mr-2" />
-                        Source Code
+                        <Github className="w-3 h-3 md:w-4 md:h-4 mr-1" />
+                        Code
                       </a>
                     </Button>
                   </div>
@@ -117,18 +107,17 @@ const Projects = () => {
           })}
         </div>
 
-        {/* Call to action */}
-        <div className="mt-16 text-center">
-          <p className="text-muted-foreground mb-6">Want to see more of my work?</p>
+        {/* CTA - smaller on mobile */}
+        <div className="mt-8 md:mt-16 text-center">
           <Button 
             variant="outline" 
-            size="lg"
-            className="border-primary/50 hover:bg-primary/10 hover:border-primary group"
+            size="sm"
+            className="border-primary/50 hover:bg-primary/10 text-sm md:text-base"
             asChild
           >
             <a href="https://github.com/PhilsOnGod" target="_blank" rel="noopener noreferrer">
-              <Github className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-              View All Projects on GitHub
+              <Github className="w-4 h-4 mr-2" />
+              View All on GitHub
             </a>
           </Button>
         </div>

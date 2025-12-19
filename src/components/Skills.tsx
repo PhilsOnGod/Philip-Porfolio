@@ -9,42 +9,38 @@ const skills = {
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-24 px-4 relative">
-      {/* Background decoration */}
+    <section id="skills" className="py-12 md:py-24 px-4 relative">
       <div className="absolute left-0 top-1/2 w-1/3 h-96 bg-primary/5 blur-[150px] rounded-full -translate-y-1/2" />
       
       <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="text-center space-y-4 mb-16">
-          <Badge variant="outline" className="border-secondary/50 text-secondary px-4 py-1 mb-4">
+        <div className="text-center space-y-2 md:space-y-4 mb-8 md:mb-16">
+          <Badge variant="outline" className="border-secondary/50 text-secondary px-3 py-0.5 text-xs md:text-sm">
             What I Do
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold">
+          <h2 className="text-2xl md:text-5xl font-bold">
             Technical <span className="text-gradient-secondary">Expertise</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Modern technologies I use to build scalable applications
-          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        {/* Skills grid - 2x2 on mobile, compact */}
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
           {Object.entries(skills).map(([category, items], categoryIndex) => (
             <div 
               key={category}
-              className="glass glass-hover rounded-2xl p-8 animate-fade-in group"
+              className="glass glass-hover rounded-xl md:rounded-2xl p-4 md:p-8 animate-fade-in"
               style={{ animationDelay: `${categoryIndex * 0.1}s` }}
             >
-              <h3 className="text-2xl font-bold mb-6">
+              <h3 className="text-sm md:text-2xl font-bold mb-2 md:mb-6">
                 <span className={categoryIndex % 2 === 0 ? 'text-gradient-primary' : 'text-gradient-secondary'}>
                   {category}
                 </span>
               </h3>
-              <div className="flex flex-wrap gap-3">
-                {items.map((skill, index) => (
+              <div className="flex flex-wrap gap-1 md:gap-3">
+                {items.map((skill) => (
                   <Badge 
                     key={skill}
                     variant="secondary"
-                    className="text-sm px-4 py-2 bg-muted/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-default group-hover:animate-fade-in"
-                    style={{ animationDelay: `${(categoryIndex * items.length + index) * 0.05}s` }}
+                    className="text-[10px] md:text-sm px-2 py-0.5 md:px-4 md:py-2 bg-muted/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                   >
                     {skill}
                   </Badge>
@@ -54,23 +50,22 @@ const Skills = () => {
           ))}
         </div>
 
-        {/* Stats section */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+        {/* Stats - Horizontal scroll on mobile */}
+        <div className="mt-8 md:mt-16 flex md:grid md:grid-cols-4 gap-3 md:gap-6 overflow-x-auto pb-2 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0">
           {[
-            { number: "2+", label: "Years Experience" },
-            { number: "10+", label: "Projects Completed" },
-            { number: "5+", label: "Happy Clients" },
-            { number: "100%", label: "Client Satisfaction" },
+            { number: "2+", label: "Years Exp" },
+            { number: "10+", label: "Projects" },
+            { number: "5+", label: "Clients" },
+            { number: "100%", label: "Satisfaction" },
           ].map((stat, index) => (
             <div 
               key={index}
-              className="text-center p-6 glass rounded-xl animate-scale-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="flex-shrink-0 text-center p-3 md:p-6 glass rounded-lg md:rounded-xl min-w-[80px] md:min-w-0"
             >
-              <div className="text-3xl md:text-4xl font-bold text-gradient-primary mb-2">
+              <div className="text-xl md:text-4xl font-bold text-gradient-primary mb-1">
                 {stat.number}
               </div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
+              <div className="text-[10px] md:text-sm text-muted-foreground whitespace-nowrap">{stat.label}</div>
             </div>
           ))}
         </div>

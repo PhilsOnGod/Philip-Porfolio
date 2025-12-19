@@ -12,145 +12,110 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden px-4 pt-20">
+    <section id="hero" className="min-h-[100svh] flex items-center justify-center relative overflow-hidden px-4 pt-16 pb-8">
       {/* Animated background */}
       <div className="absolute inset-0 bg-gradient-hero" />
       <div className="absolute inset-0 bg-gradient-mesh opacity-50" />
       
-      {/* Floating orbs */}
-      <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-primary/20 rounded-full blur-[100px] animate-float" />
-      <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-secondary/20 rounded-full blur-[120px] animate-float-delayed" />
-      <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-accent/15 rounded-full blur-[80px] animate-float" />
-      
-      {/* Grid pattern overlay */}
-      <div 
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)`,
-          backgroundSize: '50px 50px'
-        }}
-      />
+      {/* Floating orbs - smaller on mobile */}
+      <div className="absolute top-1/4 right-1/4 w-32 md:w-64 h-32 md:h-64 bg-primary/20 rounded-full blur-[60px] md:blur-[100px] animate-float" />
+      <div className="absolute bottom-1/4 left-1/4 w-40 md:w-80 h-40 md:h-80 bg-secondary/20 rounded-full blur-[80px] md:blur-[120px] animate-float-delayed" />
       
       <div className="container mx-auto relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Text Content */}
-            <div className="space-y-8 text-center md:text-left order-2 md:order-1">
-              <div className="space-y-6 animate-fade-in">
-                <Badge variant="outline" className="border-primary/50 text-primary animate-pulse-glow px-4 py-1.5">
+          {/* Mobile: Horizontal compact layout */}
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-12 items-center">
+            
+            {/* Profile Photo - Smaller on mobile, inline */}
+            <div className="flex justify-center order-1 md:order-2 animate-fade-in">
+              <div className="relative group">
+                <div className="absolute -inset-2 md:-inset-4 bg-gradient-primary rounded-full blur-xl md:blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+                <div className="absolute -inset-0.5 md:-inset-1 bg-gradient-primary rounded-full opacity-75"></div>
+                <div className="relative p-0.5 md:p-1 rounded-full bg-background">
+                  <img 
+                    src={profilePhoto} 
+                    alt="Okeke Philip Chidubem - Full Stack Developer"
+                    className="relative rounded-full w-28 h-28 sm:w-36 sm:h-36 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Text Content - Compact on mobile */}
+            <div className="space-y-4 md:space-y-8 text-center md:text-left order-2 md:order-1">
+              <div className="space-y-3 md:space-y-6 animate-fade-in">
+                <Badge variant="outline" className="border-primary/50 text-primary animate-pulse-glow px-3 py-1 text-xs md:text-sm">
                   Available for opportunities
                 </Badge>
                 
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]">
+                <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
                   Okeke Philip
-                  <span className="block text-gradient-primary">
-                    Chidubem
-                  </span>
+                  <span className="block text-gradient-primary">Chidubem</span>
                 </h1>
                 
-                <p className="text-xl md:text-2xl text-muted-foreground font-medium">
+                <p className="text-lg md:text-2xl text-muted-foreground font-medium">
                   Full Stack Developer
                 </p>
               </div>
 
-              <p 
-                className="text-base md:text-lg text-foreground/70 leading-relaxed max-w-lg animate-fade-in"
-                style={{ animationDelay: '0.2s' }}
-              >
-                I craft seamless digital experiences with modern technologies. 
-                Passionate about clean code, intuitive design, and building products that make a difference.
+              <p className="text-sm md:text-lg text-foreground/70 leading-relaxed max-w-lg mx-auto md:mx-0">
+                I craft seamless digital experiences with modern technologies.
               </p>
 
-              <div 
-                className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center pt-4 animate-fade-in"
-                style={{ animationDelay: '0.4s' }}
-              >
+              {/* Buttons - Horizontal on mobile */}
+              <div className="flex flex-row gap-2 md:gap-4 justify-center md:justify-start items-center">
                 <Button 
-                  size="lg" 
+                  size="sm"
                   onClick={() => scrollToSection("projects")}
-                  className="bg-gradient-primary hover:shadow-glow transition-all duration-300 group text-lg px-8 w-full sm:w-auto"
+                  className="bg-gradient-primary hover:shadow-glow transition-all duration-300 group text-sm md:text-lg px-4 md:px-8"
                 >
-                  View My Work
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  View Work
+                  <ArrowRight className="ml-1 md:ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 <Button 
-                  size="lg" 
+                  size="sm"
                   variant="outline"
-                  className="border-2 border-primary/50 hover:bg-primary/10 hover:border-primary text-lg px-8 w-full sm:w-auto"
+                  className="border-2 border-primary/50 hover:bg-primary/10 text-sm md:text-lg px-4 md:px-8"
                   asChild
                 >
-                  <a href="mailto:ongod7238@gmail.com">Get In Touch</a>
+                  <a href="mailto:ongod7238@gmail.com">Contact</a>
                 </Button>
               </div>
 
-              <div 
-                className="flex justify-center md:justify-start gap-4 pt-6 animate-fade-in"
-                style={{ animationDelay: '0.6s' }}
-              >
+              {/* Social links - Horizontal compact */}
+              <div className="flex justify-center md:justify-start gap-2 md:gap-4">
                 <a 
                   href="https://github.com/PhilsOnGod" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl glass glass-hover transition-all duration-300 hover:scale-110 hover:shadow-glow group"
+                  className="p-2 md:p-3 rounded-lg md:rounded-xl glass glass-hover transition-all duration-300 hover:scale-110 group"
                 >
-                  <Github className="w-6 h-6 group-hover:text-primary transition-colors" />
+                  <Github className="w-5 h-5 md:w-6 md:h-6 group-hover:text-primary transition-colors" />
                 </a>
                 <a 
                   href="https://www.linkedin.com/in/philip-okeke-947668358/" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl glass glass-hover transition-all duration-300 hover:scale-110 hover:shadow-glow group"
+                  className="p-2 md:p-3 rounded-lg md:rounded-xl glass glass-hover transition-all duration-300 hover:scale-110 group"
                 >
-                  <Linkedin className="w-6 h-6 group-hover:text-primary transition-colors" />
+                  <Linkedin className="w-5 h-5 md:w-6 md:h-6 group-hover:text-primary transition-colors" />
                 </a>
                 <a 
                   href="https://x.com/eazi_king" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl glass glass-hover transition-all duration-300 hover:scale-110 hover:shadow-glow group"
+                  className="p-2 md:p-3 rounded-lg md:rounded-xl glass glass-hover transition-all duration-300 hover:scale-110 group"
                 >
-                  <Twitter className="w-6 h-6 group-hover:text-primary transition-colors" />
+                  <Twitter className="w-5 h-5 md:w-6 md:h-6 group-hover:text-primary transition-colors" />
                 </a>
-              </div>
-            </div>
-
-            {/* Profile Photo */}
-            <div 
-              className="flex justify-center order-1 md:order-2 animate-fade-in-right"
-              style={{ animationDelay: '0.3s' }}
-            >
-              <div className="relative group">
-                {/* Glow effect */}
-                <div className="absolute -inset-4 bg-gradient-primary rounded-full blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500 animate-pulse-glow"></div>
-                
-                {/* Rotating border */}
-                <div className="absolute -inset-1 bg-gradient-primary rounded-full opacity-75 animate-gradient"></div>
-                
-                {/* Image container */}
-                <div className="relative p-1 rounded-full bg-background">
-                  <img 
-                    src={profilePhoto} 
-                    alt="Okeke Philip Chidubem - Full Stack Developer"
-                    className="relative rounded-full w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover"
-                  />
-                </div>
-                
-                {/* Floating badges */}
-                <div className="absolute -top-4 -right-4 p-3 rounded-xl glass animate-float">
-                  <span className="text-2xl">🚀</span>
-                </div>
-                <div className="absolute -bottom-4 -left-4 p-3 rounded-xl glass animate-float-delayed">
-                  <span className="text-2xl">💻</span>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      {/* Scroll indicator - hidden on mobile */}
+      <div className="hidden md:block absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center pt-2">
           <div className="w-1.5 h-3 bg-primary rounded-full animate-slide-up"></div>
         </div>
