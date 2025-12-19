@@ -1,53 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Modern Portfolio Design System - Deep Purple/Electric Blue Theme */
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    --background: 240 20% 4%;
+    --foreground: 0 0% 98%;
 
-    --card: 217 33% 17%;
-    --card-foreground: 210 40% 98%;
+    --card: 240 15% 8%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 217 33% 17%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 240 15% 8%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 188 94% 57%;
-    --primary-foreground: 222 47% 11%;
+    --primary: 265 83% 57%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 14 90% 65%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 195 100% 50%;
+    --secondary-foreground: 240 20% 4%;
 
-    --muted: 217 33% 22%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 240 15% 15%;
+    --muted-foreground: 240 10% 65%;
 
-    --accent: 188 94% 57%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 330 85% 60%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 217 33% 22%;
-    --input: 217 33% 22%;
-    --ring: 188 94% 57%;
+    --border: 240 15% 18%;
+    --input: 240 15% 18%;
+    --ring: 265 83% 57%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
     /* Custom design tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(188 94% 57%), hsl(188 94% 67%));
-    --gradient-secondary: linear-gradient(135deg, hsl(14 90% 65%), hsl(14 90% 75%));
-    --gradient-hero: linear-gradient(135deg, hsl(188 94% 57% / 0.1), hsl(14 90% 65% / 0.1));
+    --gradient-primary: linear-gradient(135deg, hsl(265 83% 57%), hsl(330 85% 60%));
+    --gradient-secondary: linear-gradient(135deg, hsl(195 100% 50%), hsl(265 83% 57%));
+    --gradient-hero: radial-gradient(ellipse at top, hsl(265 83% 57% / 0.15), transparent 50%),
+                     radial-gradient(ellipse at bottom right, hsl(195 100% 50% / 0.1), transparent 50%);
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(265 83% 57% / 0.3) 0px, transparent 50%),
+                     radial-gradient(at 80% 0%, hsl(195 100% 50% / 0.2) 0px, transparent 50%),
+                     radial-gradient(at 0% 50%, hsl(330 85% 60% / 0.2) 0px, transparent 50%);
     
-    --shadow-glow: 0 0 40px hsl(188 94% 57% / 0.3);
-    --shadow-glow-secondary: 0 0 40px hsl(14 90% 65% / 0.3);
-    --shadow-card: 0 10px 40px -10px hsl(188 94% 57% / 0.2);
+    --shadow-glow: 0 0 60px hsl(265 83% 57% / 0.4);
+    --shadow-glow-secondary: 0 0 60px hsl(195 100% 50% / 0.4);
+    --shadow-card: 0 20px 50px -15px hsl(265 83% 57% / 0.25);
+    --shadow-soft: 0 10px 40px -10px hsl(0 0% 0% / 0.5);
     
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
@@ -62,13 +67,98 @@ All colors MUST be HSL.
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Outfit', 'Inter', sans-serif;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
     font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
   html {
     scroll-behavior: smooth;
   }
+
+  /* Selection color */
+  ::selection {
+    background: hsl(265 83% 57% / 0.4);
+    color: hsl(0 0% 100%);
+  }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+@layer utilities {
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .text-gradient-secondary {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-secondary);
+  }
+
+  .glass {
+    @apply bg-card/60 backdrop-blur-xl border border-border/50;
+  }
+
+  .glass-hover {
+    @apply hover:bg-card/80 hover:border-primary/30;
+  }
+
+  .glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-secondary {
+    box-shadow: var(--shadow-glow-secondary);
+  }
+}
+
+@layer components {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  .animate-border-glow {
+    animation: border-glow 3s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes border-glow {
+  0%, 100% {
+    border-color: hsl(265 83% 57% / 0.5);
+    box-shadow: 0 0 20px hsl(265 83% 57% / 0.2);
+  }
+  50% {
+    border-color: hsl(195 100% 50% / 0.5);
+    box-shadow: 0 0 30px hsl(195 100% 50% / 0.3);
+  }
+}
