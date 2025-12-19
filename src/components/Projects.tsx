@@ -1,99 +1,136 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, TrendingUp, BarChart3 } from "lucide-react";
 
 const projects = [
   {
-    title: "E-Commerce Platform",
-    description: "Full-stack e-commerce solution with real-time inventory management, secure payment processing, and admin dashboard. Built for scalability and optimal user experience.",
-    tech: ["React", "Node.js", "PostgreSQL", "Stripe", "Redis"],
-    image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
+    title: "Sales Tracker Pro",
+    description: "A comprehensive sales tracking application built for businesses to monitor revenue, manage inventory, and analyze sales performance in real-time. Features include dashboard analytics, product management, and sales reporting.",
+    tech: ["TypeScript", "React", "Tailwind CSS", "Supabase", "Chart.js"],
+    icon: TrendingUp,
+    github: "https://github.com/PhilsOnGod/sales-tracker-10",
+    color: "primary" as const,
   },
   {
-    title: "AI-Powered Analytics Dashboard",
-    description: "Real-time data visualization platform with machine learning insights. Features predictive analytics, customizable reports, and seamless API integrations.",
-    tech: ["Next.js", "Python", "TensorFlow", "MongoDB", "AWS"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-  },
-  {
-    title: "Social Collaboration Tool",
-    description: "Team collaboration platform with real-time messaging, file sharing, and project management features. Supports 10,000+ concurrent users.",
-    tech: ["Vue.js", "Express", "WebSocket", "PostgreSQL", "Docker"],
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop",
-  },
-  {
-    title: "Healthcare Management System",
-    description: "HIPAA-compliant healthcare platform for patient management, appointment scheduling, and telemedicine. Features end-to-end encryption and role-based access.",
-    tech: ["React", "Django", "MySQL", "Redis", "AWS S3"],
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop",
+    title: "NaijaSalesTracker",
+    description: "A specialized sales tracking solution designed for Nigerian businesses. Supports local currency, Nigerian business workflows, and provides insights tailored for the local market with intuitive dashboards.",
+    tech: ["TypeScript", "React", "Tailwind CSS", "PostgreSQL", "REST API"],
+    icon: BarChart3,
+    github: "https://github.com/PhilsOnGod/NaijaSalesTracker",
+    color: "secondary" as const,
   },
 ];
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-24 px-4 bg-muted/30">
-      <div className="container mx-auto max-w-6xl">
+    <section id="projects" className="py-24 px-4 relative">
+      {/* Background decorations */}
+      <div className="absolute inset-0 bg-gradient-mesh opacity-30 pointer-events-none" />
+      
+      <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center space-y-4 mb-16">
+          <Badge variant="outline" className="border-primary/50 text-primary px-4 py-1 mb-4">
+            Portfolio
+          </Badge>
           <h2 className="text-4xl md:text-5xl font-bold">
-            Featured <span className="bg-gradient-secondary bg-clip-text text-transparent">Projects</span>
+            Featured <span className="text-gradient-primary">Projects</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Showcasing impactful solutions that solve real-world problems
+            Real-world applications I've built to solve business problems
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <Card 
-              key={index}
-              className="overflow-hidden border-border hover:shadow-card transition-all duration-300 hover:border-primary/50 group"
-            >
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
-              </div>
-              <CardHeader>
-                <CardTitle className="text-2xl group-hover:text-primary transition-colors">
-                  {project.title}
-                </CardTitle>
-                <CardDescription className="text-base">
-                  {project.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((tech) => (
-                    <Badge key={tech} variant="outline" className="border-primary/30">
-                      {tech}
-                    </Badge>
-                  ))}
+        <div className="grid lg:grid-cols-2 gap-8">
+          {projects.map((project, index) => {
+            const Icon = project.icon;
+            const isSecondary = project.color === "secondary";
+            
+            return (
+              <Card 
+                key={index}
+                className="glass glass-hover overflow-hidden group relative animate-fade-in"
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                {/* Gradient border effect */}
+                <div className={`absolute inset-0 bg-gradient-${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-lg`} />
+                
+                {/* Icon header */}
+                <div className={`p-6 ${isSecondary ? 'bg-secondary/10' : 'bg-primary/10'} border-b border-border/50`}>
+                  <div className="flex items-center gap-4">
+                    <div className={`p-4 rounded-xl ${isSecondary ? 'bg-secondary/20 text-secondary' : 'bg-primary/20 text-primary'} group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="w-8 h-8" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-2xl group-hover:text-primary transition-colors">
+                        {project.title}
+                      </CardTitle>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex gap-3">
-                  <Button 
-                    size="sm" 
-                    variant="outline"
-                    className="border-primary/50 hover:bg-primary/10"
-                  >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Live Demo
-                  </Button>
-                  <Button 
-                    size="sm" 
-                    variant="ghost"
-                    className="hover:text-primary"
-                  >
-                    <Github className="w-4 h-4 mr-2" />
-                    Code
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                
+                <CardHeader className="pb-2">
+                  <CardDescription className="text-base text-foreground/70 leading-relaxed">
+                    {project.description}
+                  </CardDescription>
+                </CardHeader>
+                
+                <CardContent className="space-y-6">
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech) => (
+                      <Badge 
+                        key={tech} 
+                        variant="outline" 
+                        className={`${isSecondary ? 'border-secondary/30 hover:bg-secondary/10' : 'border-primary/30 hover:bg-primary/10'} transition-colors`}
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                  
+                  <div className="flex gap-3 pt-2">
+                    <Button 
+                      size="sm" 
+                      className={`${isSecondary ? 'bg-gradient-secondary' : 'bg-gradient-primary'} hover:shadow-glow transition-all duration-300`}
+                      asChild
+                    >
+                      <a href={project.github} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        View Project
+                      </a>
+                    </Button>
+                    <Button 
+                      size="sm" 
+                      variant="outline"
+                      className="border-border hover:border-primary hover:bg-primary/10"
+                      asChild
+                    >
+                      <a href={project.github} target="_blank" rel="noopener noreferrer">
+                        <Github className="w-4 h-4 mr-2" />
+                        Source Code
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+
+        {/* Call to action */}
+        <div className="mt-16 text-center">
+          <p className="text-muted-foreground mb-6">Want to see more of my work?</p>
+          <Button 
+            variant="outline" 
+            size="lg"
+            className="border-primary/50 hover:bg-primary/10 hover:border-primary group"
+            asChild
+          >
+            <a href="https://github.com/PhilsOnGod" target="_blank" rel="noopener noreferrer">
+              <Github className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+              View All Projects on GitHub
+            </a>
+          </Button>
         </div>
       </div>
     </section>
