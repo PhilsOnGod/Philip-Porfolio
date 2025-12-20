@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote, Star } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const testimonials = [
   {
@@ -24,13 +25,19 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation();
+
   return (
     <section id="testimonials" className="py-12 md:py-24 px-4 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-mesh opacity-20 pointer-events-none" />
       <div className="absolute left-1/4 bottom-0 w-96 h-96 bg-primary/10 blur-[150px] rounded-full" />
       
       <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="text-center space-y-2 md:space-y-4 mb-8 md:mb-16">
+        <div 
+          ref={headerRef}
+          className={`text-center space-y-2 md:space-y-4 mb-8 md:mb-16 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
           <Badge variant="outline" className="border-primary/50 text-primary px-3 py-0.5 text-xs md:text-sm">
             Testimonials
           </Badge>
@@ -39,8 +46,10 @@ const Testimonials = () => {
           </h2>
         </div>
 
-        {/* Mobile: Horizontal scroll, Desktop: Grid */}
-        <div className="flex md:grid md:grid-cols-3 gap-3 md:gap-6 overflow-x-auto pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0">
+        <div 
+          ref={cardsRef}
+          className={`flex md:grid md:grid-cols-3 gap-3 md:gap-6 overflow-x-auto pb-4 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 transition-all duration-700 delay-200 ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}

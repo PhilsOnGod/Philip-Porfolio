@@ -2,15 +2,22 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Mail, MapPin, Clock, Send, Github, Linkedin, Twitter } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Contact = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: cardRef, isVisible: cardVisible } = useScrollAnimation();
+
   return (
     <section id="contact" className="py-12 md:py-24 px-4 relative">
       <div className="absolute inset-0 bg-gradient-hero opacity-50" />
       <div className="absolute left-1/2 bottom-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary/10 blur-[150px] md:blur-[200px] rounded-full -translate-x-1/2" />
       
       <div className="container mx-auto max-w-4xl relative z-10">
-        <div className="text-center space-y-2 md:space-y-4 mb-8 md:mb-16">
+        <div 
+          ref={headerRef}
+          className={`text-center space-y-2 md:space-y-4 mb-8 md:mb-16 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
           <Badge variant="outline" className="border-secondary/50 text-secondary px-3 py-0.5 text-xs md:text-sm">
             Get in Touch
           </Badge>
@@ -19,7 +26,10 @@ const Contact = () => {
           </h2>
         </div>
 
-        <Card className="glass overflow-hidden animate-fade-in">
+        <Card 
+          ref={cardRef}
+          className={`glass overflow-hidden transition-all duration-700 delay-200 ${cardVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
           <CardContent className="p-4 md:p-12">
             {/* Contact info - horizontal scroll on mobile */}
             <div className="flex md:grid md:grid-cols-3 gap-3 md:gap-8 mb-6 md:mb-10 overflow-x-auto pb-2 md:pb-0 -mx-2 px-2 md:mx-0 md:px-0">
