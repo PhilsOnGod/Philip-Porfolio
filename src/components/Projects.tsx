@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, TrendingUp, BarChart3 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const projects = [
   {
@@ -23,12 +24,18 @@ const projects = [
 ];
 
 const Projects = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation();
+
   return (
     <section id="projects" className="py-12 md:py-24 px-4 relative">
       <div className="absolute inset-0 bg-gradient-mesh opacity-30 pointer-events-none" />
       
       <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="text-center space-y-2 md:space-y-4 mb-8 md:mb-16">
+        <div 
+          ref={headerRef}
+          className={`text-center space-y-2 md:space-y-4 mb-8 md:mb-16 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
           <Badge variant="outline" className="border-primary/50 text-primary px-3 py-0.5 text-xs md:text-sm">
             Portfolio
           </Badge>
@@ -37,8 +44,10 @@ const Projects = () => {
           </h2>
         </div>
 
-        {/* Projects - Stack on mobile */}
-        <div className="grid gap-4 md:gap-8 lg:grid-cols-2">
+        <div 
+          ref={gridRef}
+          className={`grid gap-4 md:gap-8 lg:grid-cols-2 transition-all duration-700 delay-200 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
           {projects.map((project, index) => {
             const Icon = project.icon;
             const isSecondary = project.color === "secondary";

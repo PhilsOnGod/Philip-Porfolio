@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Download, FileText, Briefcase, GraduationCap, Award } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Resume = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: cardRef, isVisible: cardVisible } = useScrollAnimation();
+
   const handleDownload = () => {
     // Create a link to download the resume PDF
     // Replace '/resume.pdf' with your actual resume file path
@@ -20,7 +24,10 @@ const Resume = () => {
   return (
     <section id="resume" className="py-12 md:py-20 bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8 md:mb-12">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-8 md:mb-12 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
           <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4">
             <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
               Resume
@@ -31,8 +38,10 @@ const Resume = () => {
           </p>
         </div>
 
-        {/* Resume Card */}
-        <div className="max-w-2xl mx-auto">
+        <div 
+          ref={cardRef}
+          className={`max-w-2xl mx-auto transition-all duration-700 delay-200 ${cardVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
           <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6 md:p-8 shadow-elegant">
             {/* Document Preview */}
             <div className="flex items-center gap-4 mb-6 pb-6 border-b border-border/50">

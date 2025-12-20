@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Code2, Lightbulb, Rocket, Users } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const values = [
   {
@@ -30,12 +31,19 @@ const values = [
 ];
 
 const About = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation();
+  const { ref: journeyRef, isVisible: journeyVisible } = useScrollAnimation();
+
   return (
     <section id="about" className="py-12 md:py-24 px-4 relative">
       <div className="absolute right-0 top-0 w-1/2 h-96 bg-secondary/5 blur-[150px] rounded-full" />
       
       <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="text-center space-y-2 md:space-y-4 mb-8 md:mb-16">
+        <div 
+          ref={headerRef}
+          className={`text-center space-y-2 md:space-y-4 mb-8 md:mb-16 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
           <Badge variant="outline" className="border-primary/50 text-primary px-3 py-0.5 text-xs md:text-sm">
             About Me
           </Badge>
@@ -44,8 +52,10 @@ const About = () => {
           </h2>
         </div>
 
-        {/* Values - Horizontal scroll on mobile */}
-        <div className="flex md:grid md:grid-cols-4 gap-3 md:gap-6 mb-8 md:mb-16 overflow-x-auto pb-2 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0">
+        <div 
+          ref={valuesRef}
+          className={`flex md:grid md:grid-cols-4 gap-3 md:gap-6 mb-8 md:mb-16 overflow-x-auto pb-2 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 transition-all duration-700 delay-200 ${valuesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
           {values.map((value, index) => {
             const Icon = value.icon;
             return (
@@ -68,8 +78,10 @@ const About = () => {
           })}
         </div>
 
-        {/* Journey card - compact on mobile */}
-        <div className="max-w-4xl mx-auto">
+        <div 
+          ref={journeyRef}
+          className={`max-w-4xl mx-auto transition-all duration-700 delay-300 ${journeyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
           <Card className="glass overflow-hidden animate-fade-in">
             <CardContent className="p-4 md:p-12 space-y-3 md:space-y-6">
               <h3 className="text-xl md:text-3xl font-bold">

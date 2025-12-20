@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,7 +23,7 @@ const Navigation = () => {
     }
   };
 
-  const navItems = ["About", "Skills", "Experience", "Projects", "Testimonials"];
+  const navItems = ["About", "Skills", "Experience", "Projects", "Resume", "Testimonials"];
 
   return (
     <nav
@@ -60,6 +61,7 @@ const Navigation = () => {
             >
               Contact
             </Button>
+            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
