@@ -5,13 +5,21 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const testimonials = [
   {
+<<<<<<< HEAD
     name: "Alex Osibanjo",
+=======
+    name: "Alex Johnson",
+>>>>>>> 7226c008e56ef6555b4d5f4d02b9c06d21f5ec3f
     role: "Startup Founder",
     content: "Philip delivered exactly what we needed - a clean, functional sales tracking system. His attention to detail and communication throughout the project was excellent.",
     rating: 5,
   },
   {
+<<<<<<< HEAD
     name: "Sarah Chukwuka",
+=======
+    name: "Sarah Chen",
+>>>>>>> 7226c008e56ef6555b4d5f4d02b9c06d21f5ec3f
     role: "Business Owner",
     content: "Working with Philip was a great experience. He understood our requirements quickly and built a solution that truly helps our business track sales effectively.",
     rating: 5,

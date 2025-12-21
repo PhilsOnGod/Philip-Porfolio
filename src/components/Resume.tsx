@@ -11,7 +11,11 @@ const Resume = () => {
     // Replace '/resume.pdf' with your actual resume file path
     const link = document.createElement('a');
     link.href = '/resume.pdf';
+<<<<<<< HEAD
     link.download = 'Philip_Okeke_Resume.pdf';
+=======
+    link.download = 'Philip_Obaji_Resume.pdf';
+>>>>>>> 7226c008e56ef6555b4d5f4d02b9c06d21f5ec3f
     link.click();
   };
 
