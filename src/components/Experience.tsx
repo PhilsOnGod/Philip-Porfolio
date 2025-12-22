@@ -54,31 +54,32 @@ const Experience = () => {
           ref={contentRef}
           className={`transition-all duration-700 delay-200 ${contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
-          <div className="flex md:hidden gap-3 overflow-x-auto pb-4 -mx-4 px-4">
+          <div className="grid grid-cols-1 md:hidden gap-4">
             {experiences.map((exp, index) => {
               const Icon = exp.type === "work" ? Briefcase : GraduationCap;
               return (
                 <div 
                   key={index}
-                  className="flex-shrink-0 w-[260px] glass glass-hover p-4 rounded-xl"
+                  className="glass glass-hover p-5 rounded-xl animate-fade-in"
+                  style={{ animationDelay: `${index * 0.15}s` }}
                 >
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="p-1.5 rounded-lg bg-primary/10 text-primary">
-                      <Icon className="w-4 h-4" />
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                      <Icon className="w-5 h-5" />
                     </div>
                     {exp.current && (
-                      <Badge className="bg-gradient-primary text-primary-foreground text-[10px] px-2 py-0">
+                      <Badge className="bg-gradient-primary text-primary-foreground text-xs px-2.5 py-0.5">
                         Current
                       </Badge>
                     )}
                   </div>
-                  <h3 className="text-sm font-bold mb-0.5">{exp.title}</h3>
-                  <p className="text-primary text-xs font-medium mb-1">{exp.company}</p>
-                  <div className="flex items-center gap-1 text-[10px] text-muted-foreground mb-2">
-                    <Calendar className="w-3 h-3" />
+                  <h3 className="text-base font-bold mb-1">{exp.title}</h3>
+                  <p className="text-primary text-sm font-medium mb-2">{exp.company}</p>
+                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-3">
+                    <Calendar className="w-3.5 h-3.5" />
                     {exp.period}
                   </div>
-                  <p className="text-foreground/70 text-xs leading-relaxed line-clamp-3">
+                  <p className="text-foreground/70 text-sm leading-relaxed">
                     {exp.description}
                   </p>
                 </div>
