@@ -51,7 +51,7 @@ const Resume = () => {
                 <FileText className="w-8 h-10 md:w-10 md:h-12 text-primary" />
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-foreground text-lg md:text-xl">Philip Obaji</h3>
+                <h3 className="font-semibold text-foreground text-lg md:text-xl">Philip Okeke</h3>
                 <p className="text-muted-foreground text-sm">Full Stack Developer</p>
                 <p className="text-xs text-muted-foreground/70 mt-1">PDF • Updated Dec 2024</p>
               </div>
