@@ -39,17 +39,18 @@ const Skills = () => {
               className="glass glass-hover rounded-xl md:rounded-2xl p-4 md:p-8 animate-fade-in"
               style={{ animationDelay: `${categoryIndex * 0.1}s` }}
             >
-              <h3 className="text-sm md:text-2xl font-bold mb-2 md:mb-6">
+              <h3 className="text-base md:text-2xl font-bold mb-3 md:mb-6">
                 <span className={categoryIndex % 2 === 0 ? 'text-gradient-primary' : 'text-gradient-secondary'}>
                   {category}
                 </span>
               </h3>
-              <div className="flex flex-wrap gap-1 md:gap-3">
-                {items.map((skill) => (
+              <div className="flex flex-wrap gap-1.5 md:gap-3">
+                {items.map((skill, skillIndex) => (
                   <Badge 
                     key={skill}
                     variant="secondary"
-                    className="text-[10px] md:text-sm px-2 py-0.5 md:px-4 md:py-2 bg-muted/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    className="text-xs md:text-sm px-2.5 py-1 md:px-4 md:py-2 bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-primary-foreground transition-all duration-300 animate-fade-in font-medium"
+                    style={{ animationDelay: `${(categoryIndex * 0.1) + (skillIndex * 0.05)}s` }}
                   >
                     {skill}
                   </Badge>
