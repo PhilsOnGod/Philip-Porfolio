@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Quote, Star } from "lucide-react";
+import { Quote, Star, Terminal } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const testimonials = [
@@ -30,19 +30,25 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="py-12 md:py-24 px-4 relative overflow-hidden">
+      {/* Tech Grid Background */}
+      <div className="absolute inset-0 grid-pattern opacity-50" />
       <div className="absolute inset-0 bg-gradient-mesh opacity-20 pointer-events-none" />
       <div className="absolute left-1/4 bottom-0 w-96 h-96 bg-primary/10 blur-[150px] rounded-full" />
+      
+      {/* Scan Line Effect */}
+      <div className="scan-line" />
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <div 
           ref={headerRef}
           className={`text-center space-y-2 md:space-y-4 mb-8 md:mb-16 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
-          <Badge variant="outline" className="border-primary/50 text-primary px-3 py-0.5 text-xs md:text-sm">
+          <Badge variant="outline" className="border-primary/50 text-primary px-3 py-0.5 text-xs md:text-sm animate-cyber-border">
+            <Terminal className="w-3 h-3 mr-1 inline" />
             Testimonials
           </Badge>
           <h2 className="text-2xl md:text-5xl font-bold">
-            What People <span className="text-gradient-secondary">Say</span>
+            What People <span className="text-gradient-secondary cyber-glow">Say</span>
           </h2>
         </div>
 
@@ -53,17 +59,21 @@ const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index}
-              className="glass glass-hover overflow-hidden group animate-fade-in"
-              style={{ animationDelay: `${index * 0.15}s` }}
+              className="tech-card cyber-corner overflow-hidden group animate-slide-in-bottom hover:scale-[1.02] transition-transform duration-300"
+              style={{ animationDelay: `${index * 0.2}s` }}
             >
               <CardContent className="p-5 md:p-6 relative">
-                <div className="absolute top-3 right-3 md:top-4 md:right-4 text-primary/20">
+                <div className="absolute top-3 right-3 md:top-4 md:right-4 text-primary/30 group-hover:text-primary/50 transition-colors">
                   <Quote className="w-8 h-8 md:w-10 md:h-10" />
                 </div>
                 
                 <div className="flex gap-1 mb-3 md:mb-4">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 md:w-4 md:h-4 fill-primary text-primary" />
+                    <Star 
+                      key={i} 
+                      className="w-4 h-4 md:w-4 md:h-4 fill-primary text-primary animate-glow-pulse" 
+                      style={{ animationDelay: `${i * 0.1}s` }}
+                    />
                   ))}
                 </div>
                 
@@ -72,12 +82,12 @@ const Testimonials = () => {
                 </p>
                 
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-sm md:text-base">
+                  <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-sm md:text-base animate-pulse-glow">
                     {testimonial.name.charAt(0)}
                   </div>
                   <div>
-                    <p className="font-semibold text-sm">{testimonial.name}</p>
-                    <p className="text-muted-foreground text-xs">{testimonial.role}</p>
+                    <p className="font-semibold text-sm text-foreground">{testimonial.name}</p>
+                    <p className="text-muted-foreground text-xs terminal-text">{testimonial.role}</p>
                   </div>
                 </div>
               </CardContent>

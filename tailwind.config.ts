@@ -102,6 +102,49 @@ export default {
           "0%, 100%": { boxShadow: "0 0 20px hsl(265 83% 57% / 0.3)" },
           "50%": { boxShadow: "0 0 40px hsl(265 83% 57% / 0.6)" },
         },
+        "glitch": {
+          "0%, 100%": { transform: "translate(0)" },
+          "20%": { transform: "translate(-2px, 2px)" },
+          "40%": { transform: "translate(-2px, -2px)" },
+          "60%": { transform: "translate(2px, 2px)" },
+          "80%": { transform: "translate(2px, -2px)" },
+        },
+        "typing": {
+          "0%": { width: "0" },
+          "100%": { width: "100%" },
+        },
+        "blink": {
+          "0%, 100%": { borderColor: "transparent" },
+          "50%": { borderColor: "hsl(var(--primary))" },
+        },
+        "scan-line": {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(100vh)" },
+        },
+        "matrix-rain": {
+          "0%": { transform: "translateY(-100%)", opacity: "1" },
+          "100%": { transform: "translateY(100%)", opacity: "0" },
+        },
+        "glow-pulse": {
+          "0%, 100%": { 
+            textShadow: "0 0 5px hsl(var(--primary)), 0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary))" 
+          },
+          "50%": { 
+            textShadow: "0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--primary))" 
+          },
+        },
+        "cyber-border": {
+          "0%, 100%": { 
+            boxShadow: "0 0 5px hsl(var(--primary)), inset 0 0 5px hsl(var(--primary) / 0.1)" 
+          },
+          "50%": { 
+            boxShadow: "0 0 20px hsl(var(--secondary)), inset 0 0 10px hsl(var(--secondary) / 0.2)" 
+          },
+        },
+        "slide-in-bottom": {
+          "0%": { opacity: "0", transform: "translateY(50px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -113,6 +156,13 @@ export default {
         "slide-up": "slide-up 0.6s ease-out forwards",
         "shimmer": "shimmer 2s linear infinite",
         "pulse-glow": "pulse-glow 3s ease-in-out infinite",
+        "glitch": "glitch 0.5s ease-in-out infinite",
+        "typing": "typing 3s steps(40) forwards",
+        "blink": "blink 1s step-end infinite",
+        "scan-line": "scan-line 3s linear infinite",
+        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        "cyber-border": "cyber-border 2s ease-in-out infinite",
+        "slide-in-bottom": "slide-in-bottom 0.6s ease-out forwards",
       },
     },
   },
