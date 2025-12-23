@@ -1,30 +1,36 @@
 import { Badge } from "@/components/ui/badge";
-import { Briefcase, GraduationCap, Calendar, Terminal } from "lucide-react";
+import { Briefcase, GraduationCap, Calendar, Terminal, MapPin, Code } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const experiences = [
   {
     type: "work",
-    title: "Full Stack Developer",
-    company: "Freelance",
-    period: "2023 - Present",
-    description: "Building custom web applications and business solutions for clients worldwide. Specializing in React, TypeScript, and modern backend technologies.",
-    current: true,
-  },
-  {
-    type: "work",
-    title: "Frontend Developer",
-    company: "Tech Projects",
-    period: "2022 - 2023",
-    description: "Developed responsive web interfaces and collaborated with teams to deliver high-quality user experiences.",
+    title: "Web Development Intern",
+    company: "Femish IT Solutions Limited",
+    location: "Ikeja, Lagos",
+    period: "Jan 2022 – Dec 2023",
+    description: "Developed responsive websites using HTML, CSS, JavaScript, and React. Collaborated with designers to improve user interface and experience. Implemented back-end functionality using Node.js and MySQL.",
+    skills: ["React", "Node.js", "MySQL", "JavaScript"],
     current: false,
   },
   {
     type: "education",
-    title: "Computer Science",
-    company: "Self-Taught & Online Courses",
-    period: "2021 - Present",
-    description: "Continuous learning through platforms like freeCodeCamp, Udemy, and hands-on project development.",
+    title: "B.Sc. Computer Science",
+    company: "Achievers University",
+    location: "Nigeria",
+    period: "2020 – 2024",
+    description: "Graduated Second Class Upper Division. Developed skills in web development and database management through coursework and hands-on projects.",
+    skills: ["Web Development", "Database Management", "Programming"],
+    current: false,
+  },
+  {
+    type: "work",
+    title: "National Youth Service Corps (NYSC)",
+    company: "Community Development Service",
+    location: "Ogun State",
+    period: "2025 – Present",
+    description: "Engaged in community development and ICT-related tasks. Applying technical skills to support local organizations and community initiatives.",
+    skills: ["Community Development", "ICT", "Teaching"],
     current: true,
   },
 ];
@@ -54,6 +60,9 @@ const Experience = () => {
           <h2 className="text-2xl md:text-5xl font-bold">
             Experience & <span className="text-gradient-primary cyber-glow">Education</span>
           </h2>
+          <p className="text-muted-foreground text-sm md:text-base max-w-lg mx-auto">
+            From academic foundations to real-world development experience
+          </p>
         </div>
 
         <div 
@@ -81,14 +90,33 @@ const Experience = () => {
                     )}
                   </div>
                   <h3 className="text-base font-bold mb-1 text-foreground">{exp.title}</h3>
-                  <p className="text-primary text-sm font-medium mb-2 terminal-text">{exp.company}</p>
+                  <p className="text-primary text-sm font-medium mb-1 terminal-text">{exp.company}</p>
+                  
+                  {/* Location */}
+                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-2">
+                    <MapPin className="w-3 h-3" />
+                    {exp.location}
+                  </div>
+                  
                   <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-3">
                     <Calendar className="w-3.5 h-3.5" />
                     {exp.period}
                   </div>
-                  <p className="text-foreground/70 text-sm leading-relaxed">
+                  <p className="text-foreground/70 text-sm leading-relaxed mb-3">
                     {exp.description}
                   </p>
+                  
+                  {/* Skills Tags */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {exp.skills.map((skill, i) => (
+                      <span 
+                        key={i}
+                        className="text-xs px-2 py-0.5 bg-primary/10 text-primary rounded-full border border-primary/20"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               );
             })}
@@ -128,12 +156,32 @@ const Experience = () => {
                           )}
                         </div>
                         <h3 className="text-xl font-bold mb-1 text-foreground">{exp.title}</h3>
-                        <p className="text-primary font-medium mb-2 terminal-text">{exp.company}</p>
+                        <p className="text-primary font-medium mb-1 terminal-text">{exp.company}</p>
+                        
+                        {/* Location */}
+                        <div className={`flex items-center gap-2 text-sm text-muted-foreground mb-2 ${isLeft ? 'justify-end' : 'justify-start'}`}>
+                          <MapPin className="w-4 h-4" />
+                          {exp.location}
+                        </div>
+                        
                         <div className={`flex items-center gap-2 text-sm text-muted-foreground mb-3 ${isLeft ? 'justify-end' : 'justify-start'}`}>
                           <Calendar className="w-4 h-4" />
                           {exp.period}
                         </div>
-                        <p className="text-foreground/70 text-sm leading-relaxed">{exp.description}</p>
+                        <p className="text-foreground/70 text-sm leading-relaxed mb-4">{exp.description}</p>
+                        
+                        {/* Skills Tags */}
+                        <div className={`flex flex-wrap gap-2 ${isLeft ? 'justify-end' : 'justify-start'}`}>
+                          {exp.skills.map((skill, i) => (
+                            <span 
+                              key={i}
+                              className="text-xs px-2.5 py-1 bg-primary/10 text-primary rounded-full border border-primary/20 flex items-center gap-1"
+                            >
+                              <Code className="w-3 h-3" />
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>

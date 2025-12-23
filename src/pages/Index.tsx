@@ -9,6 +9,8 @@ import Contact from "@/components/Contact";
 import ParticleBackground from "@/components/ParticleBackground";
 import ScrollToTop from "@/components/ScrollToTop";
 import LoadingScreen from "@/components/LoadingScreen";
+import CustomCursor from "@/components/CustomCursor";
+import SectionTransition from "@/components/SectionTransition";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,16 +18,29 @@ const Index = () => {
   return (
     <>
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+      <CustomCursor />
       <main className={`min-h-screen relative ${isLoading ? "overflow-hidden" : ""}`}>
         <ParticleBackground />
         <div className="relative z-10">
           <Navigation />
-          <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Resume />
-          <Contact />
+          <SectionTransition>
+            <Hero />
+          </SectionTransition>
+          <SectionTransition>
+            <About />
+          </SectionTransition>
+          <SectionTransition>
+            <Skills />
+          </SectionTransition>
+          <SectionTransition>
+            <Projects />
+          </SectionTransition>
+          <SectionTransition>
+            <Resume />
+          </SectionTransition>
+          <SectionTransition>
+            <Contact />
+          </SectionTransition>
         </div>
         <ScrollToTop />
       </main>
