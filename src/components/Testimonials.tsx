@@ -1,31 +1,44 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Quote, Star, Terminal } from "lucide-react";
+import { Quote, Star, Terminal, MessageSquare, ThumbsUp } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const testimonials = [
   {
     name: "Alex Johnson",
     role: "Startup Founder",
+    company: "TechVentures",
     content: "Philip delivered exactly what we needed - a clean, functional sales tracking system. His attention to detail and communication throughout the project was excellent.",
     rating: 5,
+    project: "Sales Tracker App",
   },
   {
     name: "Sarah Chen",
     role: "Business Owner",
-    content: "Working with Philip was a great experience. He understood our requirements quickly and built a solution that truly helps our business track sales effectively.",
+    company: "Scent By Ella",
+    content: "Working with Philip was a great experience. He understood our requirements quickly and built an e-commerce solution with payment integration that truly helps our perfume business.",
     rating: 5,
+    project: "E-commerce Website",
   },
   {
     name: "Michael Obi",
     role: "Tech Lead",
-    content: "Philip's code quality is impressive. He writes clean, maintainable code and always meets deadlines. Would definitely work with him again.",
+    company: "Digital Solutions",
+    content: "Philip's code quality is impressive. He writes clean, maintainable code and always meets deadlines. His Node.js and MySQL skills are solid. Would definitely work with him again.",
     rating: 5,
+    project: "Web Application",
   },
+];
+
+const stats = [
+  { icon: ThumbsUp, value: "100%", label: "Satisfaction Rate" },
+  { icon: MessageSquare, value: "10+", label: "Projects Completed" },
+  { icon: Star, value: "5.0", label: "Average Rating" },
 ];
 
 const Testimonials = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation();
   const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation();
 
   return (
@@ -41,15 +54,36 @@ const Testimonials = () => {
       <div className="container mx-auto max-w-6xl relative z-10">
         <div 
           ref={headerRef}
-          className={`text-center space-y-2 md:space-y-4 mb-8 md:mb-16 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          className={`text-center space-y-2 md:space-y-4 mb-8 md:mb-12 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
           <Badge variant="outline" className="border-primary/50 text-primary px-3 py-0.5 text-xs md:text-sm animate-cyber-border">
             <Terminal className="w-3 h-3 mr-1 inline" />
             Testimonials
           </Badge>
           <h2 className="text-2xl md:text-5xl font-bold">
-            What People <span className="text-gradient-secondary cyber-glow">Say</span>
+            What Clients <span className="text-gradient-secondary cyber-glow">Say</span>
           </h2>
+          <p className="text-muted-foreground text-sm md:text-base max-w-lg mx-auto">
+            Feedback from clients who have trusted me with their projects
+          </p>
+        </div>
+
+        {/* Stats Section */}
+        <div 
+          ref={statsRef}
+          className={`grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto mb-10 md:mb-16 transition-all duration-700 delay-100 ${statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
+          {stats.map((stat, index) => (
+            <div 
+              key={index}
+              className="text-center p-4 tech-card rounded-xl animate-slide-in-bottom"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <stat.icon className="w-5 h-5 md:w-6 md:h-6 text-primary mx-auto mb-2 animate-glow-pulse" />
+              <p className="text-xl md:text-3xl font-bold text-foreground terminal-text">{stat.value}</p>
+              <p className="text-xs md:text-sm text-muted-foreground">{stat.label}</p>
+            </div>
+          ))}
         </div>
 
         <div 
@@ -67,6 +101,14 @@ const Testimonials = () => {
                   <Quote className="w-8 h-8 md:w-10 md:h-10" />
                 </div>
                 
+                {/* Project Badge */}
+                <Badge 
+                  variant="secondary" 
+                  className="mb-3 bg-secondary/10 text-secondary border border-secondary/30 text-xs"
+                >
+                  {testimonial.project}
+                </Badge>
+                
                 <div className="flex gap-1 mb-3 md:mb-4">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
                     <Star 
@@ -81,13 +123,14 @@ const Testimonials = () => {
                   "{testimonial.content}"
                 </p>
                 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 pt-3 border-t border-border/30">
                   <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-sm md:text-base animate-pulse-glow">
                     {testimonial.name.charAt(0)}
                   </div>
                   <div>
                     <p className="font-semibold text-sm text-foreground">{testimonial.name}</p>
                     <p className="text-muted-foreground text-xs terminal-text">{testimonial.role}</p>
+                    <p className="text-primary/70 text-xs">{testimonial.company}</p>
                   </div>
                 </div>
               </CardContent>
