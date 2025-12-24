@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Download, FileText, Briefcase, GraduationCap, Award, MapPin, Phone, Mail, Linkedin, Code, Globe, Terminal } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Download, FileText, Briefcase, GraduationCap, Award, MapPin, Phone, Mail, Linkedin, Code, Globe, Terminal, X, ExternalLink } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Resume = () => {
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { ref: cardRef, isVisible: cardVisible } = useScrollAnimation();
 
@@ -12,6 +15,10 @@ const Resume = () => {
     link.href = '/resume.pdf';
     link.download = 'Okeke_Philip_Chidubem_Resume.pdf';
     link.click();
+  };
+
+  const handleOpenPreview = () => {
+    setIsPreviewOpen(true);
   };
 
   const highlights = [
@@ -145,18 +152,152 @@ const Resume = () => {
 
             {/* Download Button */}
             <Button 
-              onClick={handleDownload}
+              onClick={handleOpenPreview}
               className="w-full bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-primary-foreground font-medium py-6 rounded-xl shadow-glow transition-all duration-300 hover:shadow-primary/40 animate-cyber-border"
             >
-              <Download className="w-5 h-5 mr-2" />
-              Download Full Resume (PDF)
+              <FileText className="w-5 h-5 mr-2" />
+              View Full Resume
             </Button>
 
             <p className="text-center text-xs text-muted-foreground mt-4">
-              PDF format • Last updated December 2024
+              Click to preview • PDF download available
             </p>
           </div>
         </div>
+
+        {/* Resume Preview Dialog */}
+        <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-background border-primary/30">
+            <DialogHeader className="border-b border-primary/20 pb-4">
+              <DialogTitle className="text-2xl font-bold text-gradient-primary">Resume Preview</DialogTitle>
+              <DialogDescription className="text-muted-foreground">
+                Full resume of Okeke Philip Chidubem
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="space-y-6 py-4">
+              {/* Header Section */}
+              <div className="text-center border-b border-primary/20 pb-4">
+                <h2 className="text-2xl font-bold text-foreground">OKEKE PHILIP CHIDUBEM</h2>
+                <p className="text-primary font-medium mt-1">Full Stack Web Developer</p>
+                <div className="flex flex-wrap justify-center gap-4 mt-3 text-sm text-muted-foreground">
+                  <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> Lagos, Nigeria</span>
+                  <span className="flex items-center gap-1"><Phone className="w-4 h-4" /> 09075927689</span>
+                  <span className="flex items-center gap-1"><Mail className="w-4 h-4" /> Ongod7238@gmail.com</span>
+                </div>
+              </div>
+
+              {/* Summary */}
+              <div>
+                <h3 className="text-lg font-semibold text-primary mb-2 flex items-center gap-2">
+                  <Globe className="w-5 h-5" /> Professional Summary
+                </h3>
+                <p className="text-foreground/80 leading-relaxed">
+                  Motivated Computer Science graduate with expertise in web development, front-end and back-end programming, 
+                  and data management. Passionate about delivering user-friendly digital solutions with strong problem-solving 
+                  skills and attention to detail.
+                </p>
+              </div>
+
+              {/* Education */}
+              <div>
+                <h3 className="text-lg font-semibold text-primary mb-2 flex items-center gap-2">
+                  <GraduationCap className="w-5 h-5" /> Education
+                </h3>
+                <div className="space-y-2">
+                  <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
+                    <p className="font-medium text-foreground">Tansian University, Umunya Anambra</p>
+                    <p className="text-sm text-muted-foreground">Bachelor of Science in Computer Science</p>
+                    <p className="text-sm text-primary">Second Class Upper Division • 2018 - 2023</p>
+                  </div>
+                  <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
+                    <p className="font-medium text-foreground">Information Technology Training Centre (ITC)</p>
+                    <p className="text-sm text-muted-foreground">Web Design Certificate • 2024</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Experience */}
+              <div>
+                <h3 className="text-lg font-semibold text-primary mb-2 flex items-center gap-2">
+                  <Briefcase className="w-5 h-5" /> Experience
+                </h3>
+                <div className="space-y-3">
+                  <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
+                    <p className="font-medium text-foreground">Web Developer (Freelance)</p>
+                    <p className="text-sm text-primary">2023 - Present</p>
+                    <ul className="text-sm text-muted-foreground mt-2 list-disc list-inside space-y-1">
+                      <li>Developed responsive, user-focused websites for clients</li>
+                      <li>Built Naja Sales Tracker and Scent By Ella e-commerce platform</li>
+                      <li>Improved site speed and SEO through optimization</li>
+                    </ul>
+                  </div>
+                  <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
+                    <p className="font-medium text-foreground">IT Technician - G&M Enterprises Ikeja</p>
+                    <p className="text-sm text-primary">July 2024 - October 2024</p>
+                    <ul className="text-sm text-muted-foreground mt-2 list-disc list-inside space-y-1">
+                      <li>Maintained company systems and provided tech support</li>
+                      <li>Assisted in basic website content updates</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Skills */}
+              <div>
+                <h3 className="text-lg font-semibold text-primary mb-2 flex items-center gap-2">
+                  <Code className="w-5 h-5" /> Technical Skills
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {["HTML", "CSS", "JavaScript", "React", "TypeScript", "Node.js", "MySQL", "PHP", "WordPress", "Git", "Tailwind CSS", "Bootstrap"].map((skill, i) => (
+                    <Badge key={i} variant="outline" className="border-primary/30 text-foreground bg-primary/5">
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+
+              {/* Projects */}
+              <div>
+                <h3 className="text-lg font-semibold text-primary mb-2 flex items-center gap-2">
+                  <Terminal className="w-5 h-5" /> Featured Projects
+                </h3>
+                <div className="grid gap-3">
+                  <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
+                    <p className="font-medium text-foreground">Naja Sales Tracker</p>
+                    <p className="text-sm text-muted-foreground">A sales and inventory management system with reporting features</p>
+                  </div>
+                  <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
+                    <p className="font-medium text-foreground">Scent By Ella</p>
+                    <p className="text-sm text-muted-foreground">E-commerce platform with secure payment integration</p>
+                  </div>
+                  <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
+                    <p className="font-medium text-foreground">Portfolio Website</p>
+                    <p className="text-sm text-muted-foreground">Personal portfolio with tech-themed design and animations</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Download Actions */}
+            <div className="flex gap-3 pt-4 border-t border-primary/20">
+              <Button 
+                onClick={handleDownload}
+                className="flex-1 bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-primary-foreground"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Download PDF
+              </Button>
+              <Button 
+                variant="outline"
+                onClick={() => setIsPreviewOpen(false)}
+                className="border-primary/30 hover:bg-primary/10"
+              >
+                Close
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );
