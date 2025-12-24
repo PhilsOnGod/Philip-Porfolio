@@ -3,8 +3,10 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
+import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import Resume from "@/components/Resume";
+import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import ParticleBackground from "@/components/ParticleBackground";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -33,10 +35,16 @@ const Index = () => {
             <Skills />
           </SectionTransition>
           <SectionTransition>
+            <Experience />
+          </SectionTransition>
+          <SectionTransition>
             <Projects />
           </SectionTransition>
           <SectionTransition>
             <Resume />
+          </SectionTransition>
+          <SectionTransition>
+            <Testimonials />
           </SectionTransition>
           <SectionTransition>
             <Contact />
