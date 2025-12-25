@@ -86,9 +86,58 @@ const Testimonials = () => {
           ))}
         </div>
 
+        {/* Mobile Horizontal Scroll */}
         <div 
           ref={cardsRef}
-          className={`grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 transition-all duration-700 delay-200 ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          className={`md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4 transition-all duration-700 delay-200 ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
+          <div className="flex gap-4 min-w-max pb-4">
+            {testimonials.map((testimonial, index) => (
+              <Card 
+                key={index}
+                className="tech-card cyber-corner overflow-hidden group animate-slide-in-bottom w-72 flex-shrink-0"
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                <CardContent className="p-4 relative">
+                  <div className="absolute top-2 right-2 text-primary/30">
+                    <Quote className="w-6 h-6" />
+                  </div>
+                  
+                  <Badge 
+                    variant="secondary" 
+                    className="mb-2 bg-secondary/10 text-secondary border border-secondary/30 text-[10px]"
+                  >
+                    {testimonial.project}
+                  </Badge>
+                  
+                  <div className="flex gap-0.5 mb-2">
+                    {Array.from({ length: testimonial.rating }).map((_, i) => (
+                      <Star key={i} className="w-3 h-3 fill-primary text-primary" />
+                    ))}
+                  </div>
+                  
+                  <p className="text-foreground/80 text-xs leading-relaxed mb-3 italic line-clamp-3">
+                    "{testimonial.content}"
+                  </p>
+                  
+                  <div className="flex items-center gap-2 pt-2 border-t border-border/30">
+                    <div className="w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-xs">
+                      {testimonial.name.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-xs text-foreground">{testimonial.name}</p>
+                      <p className="text-muted-foreground text-[10px]">{testimonial.role}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Grid */}
+        <div 
+          className={`hidden md:grid md:grid-cols-3 gap-6 transition-all duration-700 delay-200 ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
           {testimonials.map((testimonial, index) => (
             <Card 
@@ -96,12 +145,11 @@ const Testimonials = () => {
               className="tech-card cyber-corner overflow-hidden group animate-slide-in-bottom hover:scale-[1.02] transition-transform duration-300"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              <CardContent className="p-5 md:p-6 relative">
-                <div className="absolute top-3 right-3 md:top-4 md:right-4 text-primary/30 group-hover:text-primary/50 transition-colors">
-                  <Quote className="w-8 h-8 md:w-10 md:h-10" />
+              <CardContent className="p-6 relative">
+                <div className="absolute top-4 right-4 text-primary/30 group-hover:text-primary/50 transition-colors">
+                  <Quote className="w-10 h-10" />
                 </div>
                 
-                {/* Project Badge */}
                 <Badge 
                   variant="secondary" 
                   className="mb-3 bg-secondary/10 text-secondary border border-secondary/30 text-xs"
@@ -109,22 +157,22 @@ const Testimonials = () => {
                   {testimonial.project}
                 </Badge>
                 
-                <div className="flex gap-1 mb-3 md:mb-4">
+                <div className="flex gap-1 mb-4">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
                     <Star 
                       key={i} 
-                      className="w-4 h-4 md:w-4 md:h-4 fill-primary text-primary animate-glow-pulse" 
+                      className="w-4 h-4 fill-primary text-primary animate-glow-pulse" 
                       style={{ animationDelay: `${i * 0.1}s` }}
                     />
                   ))}
                 </div>
                 
-                <p className="text-foreground/80 text-sm md:text-sm leading-relaxed mb-4 italic">
+                <p className="text-foreground/80 text-sm leading-relaxed mb-4 italic">
                   "{testimonial.content}"
                 </p>
                 
                 <div className="flex items-center gap-3 pt-3 border-t border-border/30">
-                  <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-sm md:text-base animate-pulse-glow">
+                  <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-base animate-pulse-glow">
                     {testimonial.name.charAt(0)}
                   </div>
                   <div>

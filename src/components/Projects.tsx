@@ -151,9 +151,77 @@ const Projects = () => {
           </p>
         </div>
 
+        {/* Mobile Horizontal Scroll */}
         <div 
           ref={gridRef}
-          className={`grid gap-4 md:gap-6 md:grid-cols-2 transition-all duration-700 delay-200 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          className={`md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4 transition-all duration-700 delay-200 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
+          <div className="flex gap-4 min-w-max pb-4">
+            {projects.map((project, index) => {
+              const Icon = project.icon;
+              const colors = getColorClasses(project.color);
+              
+              return (
+                <Card 
+                  key={index}
+                  className="tech-card cyber-corner overflow-hidden group cursor-pointer w-72 flex-shrink-0 animate-slide-in-bottom"
+                  style={{ animationDelay: `${index * 0.15}s` }}
+                  onClick={() => setSelectedProject(project)}
+                >
+                  <div className={`p-4 ${colors.bg} border-b border-border/50 relative`}>
+                    <div className="flex items-center gap-2 relative z-10">
+                      <div className={`p-2 rounded-xl ${colors.bg} ${colors.text} border ${colors.border}`}>
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm font-bold text-foreground truncate">{project.title}</h3>
+                        <p className="text-xs text-muted-foreground truncate">{project.shortDesc}</p>
+                      </div>
+                    </div>
+                    <div className="absolute top-2 right-2 flex gap-1">
+                      <div className="w-2 h-2 rounded-full bg-destructive/60" />
+                      <div className="w-2 h-2 rounded-full bg-yellow-500/60" />
+                      <div className="w-2 h-2 rounded-full bg-green-500/60" />
+                    </div>
+                  </div>
+                  
+                  <CardContent className="p-4 space-y-3">
+                    <div className="flex flex-wrap gap-1">
+                      {project.tech.slice(0, 3).map((tech) => (
+                        <Badge key={tech} variant="outline" className={`text-[10px] px-1.5 py-0 ${colors.border} ${colors.text}`}>
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                    
+                    <div className="flex gap-2">
+                      <Button 
+                        size="sm"
+                        className={`flex-1 ${colors.gradient} text-primary-foreground text-[10px] h-7`}
+                        onClick={(e) => { e.stopPropagation(); setSelectedProject(project); }}
+                      >
+                        <Layers className="w-3 h-3 mr-1" />
+                        Details
+                      </Button>
+                      <Button 
+                        size="sm"
+                        variant="outline"
+                        className={`${colors.border} text-[10px] h-7`}
+                        onClick={(e) => { e.stopPropagation(); window.open(project.liveDemo, '_blank'); }}
+                      >
+                        <ExternalLink className="w-3 h-3" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Desktop Grid */}
+        <div 
+          className={`hidden md:grid gap-6 md:grid-cols-2 transition-all duration-700 delay-200 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
           {projects.map((project, index) => {
             const Icon = project.icon;
