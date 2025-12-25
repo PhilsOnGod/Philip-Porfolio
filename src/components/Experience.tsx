@@ -69,57 +69,60 @@ const Experience = () => {
           ref={contentRef}
           className={`transition-all duration-700 delay-200 ${contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
-          {/* Mobile Cards */}
-          <div className="grid grid-cols-1 md:hidden gap-4">
-            {experiences.map((exp, index) => {
-              const Icon = exp.type === "work" ? Briefcase : GraduationCap;
-              return (
-                <div 
-                  key={index}
-                  className="tech-card cyber-corner p-5 rounded-xl animate-slide-in-bottom"
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2 rounded-lg bg-primary/20 text-primary animate-pulse-glow">
-                      <Icon className="w-5 h-5" />
+          {/* Mobile Horizontal Scroll */}
+          <div className="md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4">
+            <div className="flex gap-4 min-w-max pb-4">
+              {experiences.map((exp, index) => {
+                const Icon = exp.type === "work" ? Briefcase : GraduationCap;
+                return (
+                  <div 
+                    key={index}
+                    className="tech-card cyber-corner p-4 rounded-xl animate-slide-in-bottom w-72 flex-shrink-0"
+                    style={{ animationDelay: `${index * 0.2}s` }}
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="p-1.5 rounded-lg bg-primary/20 text-primary animate-pulse-glow">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      {exp.current && (
+                        <Badge className="bg-gradient-primary text-primary-foreground text-[10px] px-2 py-0.5 animate-glow-pulse">
+                          Current
+                        </Badge>
+                      )}
                     </div>
-                    {exp.current && (
-                      <Badge className="bg-gradient-primary text-primary-foreground text-xs px-2.5 py-0.5 animate-glow-pulse">
-                        Current
-                      </Badge>
-                    )}
-                  </div>
-                  <h3 className="text-base font-bold mb-1 text-foreground">{exp.title}</h3>
-                  <p className="text-primary text-sm font-medium mb-1 terminal-text">{exp.company}</p>
-                  
-                  {/* Location */}
-                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-2">
-                    <MapPin className="w-3 h-3" />
-                    {exp.location}
-                  </div>
-                  
-                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-3">
-                    <Calendar className="w-3.5 h-3.5" />
-                    {exp.period}
-                  </div>
-                  <p className="text-foreground/70 text-sm leading-relaxed mb-3">
-                    {exp.description}
-                  </p>
-                  
-                  {/* Skills Tags */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {exp.skills.map((skill, i) => (
-                      <span 
-                        key={i}
-                        className="text-xs px-2 py-0.5 bg-primary/10 text-primary rounded-full border border-primary/20"
-                      >
-                        {skill}
+                    <h3 className="text-sm font-bold mb-0.5 text-foreground line-clamp-1">{exp.title}</h3>
+                    <p className="text-primary text-xs font-medium mb-1 terminal-text line-clamp-1">{exp.company}</p>
+                    
+                    <div className="flex items-center gap-3 text-[10px] text-muted-foreground mb-2">
+                      <span className="flex items-center gap-1">
+                        <MapPin className="w-2.5 h-2.5" />
+                        {exp.location}
                       </span>
-                    ))}
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-2.5 h-2.5" />
+                        {exp.period}
+                      </span>
+                    </div>
+                    
+                    <p className="text-foreground/70 text-xs leading-relaxed mb-2 line-clamp-2">
+                      {exp.description}
+                    </p>
+                    
+                    {/* Skills Tags */}
+                    <div className="flex flex-wrap gap-1">
+                      {exp.skills.slice(0, 3).map((skill, i) => (
+                        <span 
+                          key={i}
+                          className="text-[10px] px-1.5 py-0.5 bg-primary/10 text-primary rounded-full border border-primary/20"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
 
           {/* Desktop Timeline */}
