@@ -11,24 +11,32 @@ const SectionTransition = ({ children, className = "" }: SectionTransitionProps)
   const [hasGlitched, setHasGlitched] = useState(false);
 
   useEffect(() => {
+    const element = sectionRef.current;
+    if (!element) return;
+
+    // Check if already in view on mount
+    const rect = element.getBoundingClientRect();
+    const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+    if (isInView && !isVisible) {
+      setIsVisible(true);
+      setHasGlitched(true);
+      setTimeout(() => setHasGlitched(false), 500);
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !isVisible) {
           setIsVisible(true);
-          // Trigger glitch effect
           if (!hasGlitched) {
             setHasGlitched(true);
             setTimeout(() => setHasGlitched(false), 500);
           }
         }
       },
-      { threshold: 0.1, rootMargin: "-50px" }
+      { threshold: 0.1, rootMargin: "0px" }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    observer.observe(element);
     return () => observer.disconnect();
   }, [isVisible, hasGlitched]);
 
