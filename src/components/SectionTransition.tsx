@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, ReactNode } from "react";
+import { useLoadingState } from "@/pages/Index";
 
 interface SectionTransitionProps {
   children: ReactNode;
@@ -9,22 +10,23 @@ const SectionTransition = ({ children, className = "" }: SectionTransitionProps)
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [hasGlitched, setHasGlitched] = useState(false);
+  const isLoading = useLoadingState();
 
   useEffect(() => {
+    // Don't run observers while loading
+    if (isLoading) return;
+    
     const element = sectionRef.current;
     if (!element) return;
 
-    // Small delay to ensure loading screen has finished
-    const timeoutId = setTimeout(() => {
-      const rect = element.getBoundingClientRect();
-      const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-      if (isInView) {
-        setIsVisible(true);
-        setHasGlitched(true);
-        setTimeout(() => setHasGlitched(false), 500);
-        return;
-      }
-    }, 100);
+    // Check if already in view immediately
+    const rect = element.getBoundingClientRect();
+    const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+    if (isInView && !isVisible) {
+      setIsVisible(true);
+      setHasGlitched(true);
+      setTimeout(() => setHasGlitched(false), 500);
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -40,11 +42,8 @@ const SectionTransition = ({ children, className = "" }: SectionTransitionProps)
     );
 
     observer.observe(element);
-    return () => {
-      clearTimeout(timeoutId);
-      observer.disconnect();
-    };
-  }, []);
+    return () => observer.disconnect();
+  }, [isLoading, isVisible, hasGlitched]);
 
   return (
     <div
