@@ -7,7 +7,7 @@ interface UseScrollAnimationOptions {
 }
 
 export const useScrollAnimation = (options: UseScrollAnimationOptions = {}) => {
-  const { threshold = 0.1, rootMargin = "0px", triggerOnce = true } = options;
+  const { threshold = 0.1, rootMargin = "50px", triggerOnce = true } = options;
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -15,13 +15,15 @@ export const useScrollAnimation = (options: UseScrollAnimationOptions = {}) => {
     const element = ref.current;
     if (!element) return;
 
-    // Check if already in view on mount
-    const rect = element.getBoundingClientRect();
-    const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-    if (isInView) {
-      setIsVisible(true);
-      if (triggerOnce) return;
-    }
+    // Small delay to ensure loading screen has finished
+    const timeoutId = setTimeout(() => {
+      const rect = element.getBoundingClientRect();
+      const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (isInView) {
+        setIsVisible(true);
+        if (triggerOnce) return;
+      }
+    }, 100);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -38,7 +40,10 @@ export const useScrollAnimation = (options: UseScrollAnimationOptions = {}) => {
     );
 
     observer.observe(element);
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
   }, [threshold, rootMargin, triggerOnce]);
 
   return { ref, isVisible };
