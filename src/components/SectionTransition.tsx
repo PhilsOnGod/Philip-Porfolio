@@ -14,14 +14,17 @@ const SectionTransition = ({ children, className = "" }: SectionTransitionProps)
     const element = sectionRef.current;
     if (!element) return;
 
-    // Check if already in view on mount
-    const rect = element.getBoundingClientRect();
-    const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-    if (isInView && !isVisible) {
-      setIsVisible(true);
-      setHasGlitched(true);
-      setTimeout(() => setHasGlitched(false), 500);
-    }
+    // Small delay to ensure loading screen has finished
+    const timeoutId = setTimeout(() => {
+      const rect = element.getBoundingClientRect();
+      const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (isInView) {
+        setIsVisible(true);
+        setHasGlitched(true);
+        setTimeout(() => setHasGlitched(false), 500);
+        return;
+      }
+    }, 100);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -33,12 +36,15 @@ const SectionTransition = ({ children, className = "" }: SectionTransitionProps)
           }
         }
       },
-      { threshold: 0.1, rootMargin: "0px" }
+      { threshold: 0.05, rootMargin: "50px" }
     );
 
     observer.observe(element);
-    return () => observer.disconnect();
-  }, [isVisible, hasGlitched]);
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <div
