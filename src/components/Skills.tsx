@@ -2,10 +2,10 @@ import { Badge } from "@/components/ui/badge";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const skills = {
-  "Frontend": ["React", "TypeScript", "Next.js", "Tailwind CSS", "Vue.js", "HTML5/CSS3"],
-  "Backend": ["Node.js", "Express", "Python", "Django", "REST APIs", "GraphQL"],
-  "Database": ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Supabase"],
-  "DevOps & Tools": ["Git", "Docker", "AWS", "Vercel", "CI/CD", "Linux"]
+  "Technical": ["Python", "Web Development Basics", "Microsoft Office Suite"],
+  "Business": ["Business Operations", "Client Management", "Project Coordination"],
+  "Administrative": ["Administrative Support", "Stakeholder Liaison", "Event Coordination"],
+  "Creative": ["Content Creation", "Communication", "Problem Solving"],
 };
 
 const Skills = () => {

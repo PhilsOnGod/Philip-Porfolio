@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mail, MapPin, Clock, Send, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, Phone, Clock, Send, Github, Linkedin, Twitter } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Contact = () => {
@@ -39,19 +39,24 @@ const Contact = () => {
                 </div>
                 <h3 className="font-semibold text-sm md:text-lg">Email</h3>
                 <a 
-                  href="mailto:ongod7238@gmail.com"
+                  href="mailto:Ongod7238@gmail.com"
                   className="text-muted-foreground hover:text-primary transition-colors block text-[10px] md:text-sm"
                 >
-                  ongod7238@gmail.com
+                  Ongod7238@gmail.com
                 </a>
               </div>
 
               <div className="flex-shrink-0 text-center space-y-2 md:space-y-3 min-w-[100px] md:min-w-0">
                 <div className="inline-flex p-2 md:p-4 rounded-xl md:rounded-2xl bg-secondary/10 text-secondary">
-                  <MapPin className="w-4 h-4 md:w-6 md:h-6" />
+                  <Phone className="w-4 h-4 md:w-6 md:h-6" />
                 </div>
-                <h3 className="font-semibold text-sm md:text-lg">Location</h3>
-                <p className="text-muted-foreground text-[10px] md:text-sm">Worldwide</p>
+                <h3 className="font-semibold text-sm md:text-lg">Phone</h3>
+                <a
+                  href="tel:+2349075927689"
+                  className="text-muted-foreground hover:text-primary transition-colors block text-[10px] md:text-sm"
+                >
+                  090 7592 7689
+                </a>
               </div>
 
               <div className="flex-shrink-0 text-center space-y-2 md:space-y-3 min-w-[100px] md:min-w-0">
@@ -69,7 +74,7 @@ const Contact = () => {
                 className="bg-gradient-primary hover:shadow-glow transition-all duration-300 text-sm md:text-lg px-6 md:px-12 group"
                 asChild
               >
-                <a href="mailto:ongod7238@gmail.com">
+                <a href="mailto:Ongod7238@gmail.com">
                   <Send className="w-4 h-4 mr-2" />
                   Start a Conversation
                 </a>
