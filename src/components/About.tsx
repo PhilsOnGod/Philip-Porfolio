@@ -6,26 +6,26 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 const values = [
   {
     icon: Code2,
-    title: "Clean Code",
-    description: "Writing maintainable, scalable code that stands the test of time",
+    title: "Tech Skills",
+    description: "Computer Science foundation with hands-on software experience",
     color: "primary",
   },
   {
     icon: Lightbulb,
-    title: "Innovation",
-    description: "Constantly exploring new technologies and creative solutions",
+    title: "Business Mind",
+    description: "Driving sales, growth strategies and client relationships",
     color: "secondary",
   },
   {
     icon: Rocket,
-    title: "Performance",
-    description: "Building fast, optimized applications that deliver results",
+    title: "Coordination",
+    description: "Organising programmes, events and day-to-day operations",
     color: "accent",
   },
   {
     icon: Users,
-    title: "User-Centric",
-    description: "Designing experiences that users love and remember",
+    title: "People First",
+    description: "Strong administrative support and stakeholder engagement",
     color: "primary",
   },
 ];
@@ -89,12 +89,12 @@ const About = () => {
               </h3>
               <div className="space-y-3 text-foreground/80 text-sm md:text-base leading-relaxed">
                 <p>
-                  As a Full Stack Developer, I specialize in creating seamless web experiences that bridge 
-                  beautiful design with powerful functionality.
+                  I'm a Computer Science graduate with hands-on experience across software, business operations,
+                  project coordination, and administration.
                 </p>
                 <p className="hidden md:block">
-                  From frontend frameworks like React and TypeScript to backend technologies like Node.js and Python, 
-                  I bring a comprehensive approach to every project.
+                  I'm passionate about technology and business development, and I bring focus, structure, and
+                  value to every role I take on.
                 </p>
               </div>
             </CardContent>

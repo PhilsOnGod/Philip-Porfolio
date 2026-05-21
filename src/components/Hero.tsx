@@ -54,12 +54,12 @@ const Hero = () => {
                 </h1>
                 
                 <p className="text-lg md:text-2xl text-muted-foreground font-medium">
-                  Full Stack Developer
+                  Business & Tech Professional
                 </p>
               </div>
 
               <p className="text-sm md:text-lg text-foreground/70 leading-relaxed max-w-lg mx-auto md:mx-0">
-                I craft seamless digital experiences with modern technologies.
+                Computer Science graduate blending software, business operations, and project coordination to create value in every role.
               </p>
 
               {/* Buttons - Horizontal on mobile */}
@@ -78,7 +78,7 @@ const Hero = () => {
                   className="border-2 border-primary/50 hover:bg-primary/10 text-sm md:text-lg px-4 md:px-8"
                   asChild
                 >
-                  <a href="mailto:ongod7238@gmail.com">Contact</a>
+                  <a href="mailto:Ongod7238@gmail.com">Contact</a>
                 </Button>
               </div>
 
