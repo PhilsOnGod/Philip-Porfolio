@@ -463,8 +463,8 @@ const Projects = () => {
                     <h4 className="font-semibold text-destructive mb-2">Challenge</h4>
                     <p className="text-sm text-foreground/70">{selectedProject.challenges}</p>
                   </div>
-                  <div className="p-4 bg-green-500/5 rounded-xl border border-green-500/20">
-                    <h4 className="font-semibold text-green-500 mb-2">Solution</h4>
+                  <div className="p-4 bg-accent/5 rounded-xl border border-accent/20">
+                    <h4 className="font-semibold text-accent mb-2">Solution</h4>
                     <p className="text-sm text-foreground/70">{selectedProject.solution}</p>
                   </div>
                 </div>
