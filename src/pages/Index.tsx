@@ -42,9 +42,7 @@ const Index = () => {
             <SectionTransition>
               <Experience />
             </SectionTransition>
-            <SectionTransition>
-              <Projects />
-            </SectionTransition>
+            <Projects />
             <SectionTransition>
               <Resume />
             </SectionTransition>

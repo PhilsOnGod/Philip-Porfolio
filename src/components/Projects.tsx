@@ -4,11 +4,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ExternalLink, Github, TrendingUp, BarChart3, ShoppingBag, Globe, Terminal, CheckCircle, Layers, Zap, Users, Code } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const projects = [
   {
-    title: "Naja Sales Tracker",
+    title: "Naija Sales Tracker",
     shortDesc: "A comprehensive sales tracking application for businesses",
     description: "A full-featured sales and inventory management system designed to help businesses monitor revenue, manage inventory, and analyze sales performance in real-time.",
     tech: ["TypeScript", "React", "Tailwind CSS", "Supabase", "Chart.js"],
@@ -16,6 +15,9 @@ const projects = [
     github: "https://github.com/PhilsOnGod/sales-tracker-10",
     liveDemo: "https://naja-sales-tracker.lovable.app",
     color: "primary" as const,
+    category: "Business SaaS",
+    status: "Live Product",
+    metric: "40% faster tracking",
     features: [
       "Real-time dashboard analytics",
       "Product & inventory management",
@@ -41,6 +43,9 @@ const projects = [
     github: "https://github.com/PhilsOnGod/NaijaSalesTracker",
     liveDemo: "https://naija-sales-tracker.lovable.app",
     color: "secondary" as const,
+    category: "Local Commerce",
+    status: "Market Ready",
+    metric: "5+ businesses served",
     features: [
       "Naira currency support",
       "Nigerian business workflows",
@@ -66,6 +71,9 @@ const projects = [
     github: "https://github.com/PhilsOnGod",
     liveDemo: "https://scent-by-ella.lovable.app",
     color: "accent" as const,
+    category: "E-commerce",
+    status: "Launch Ready",
+    metric: "25% revenue lift",
     features: [
       "Product catalog with filtering",
       "Shopping cart & wishlist",
@@ -91,6 +99,9 @@ const projects = [
     github: "https://github.com/PhilsOnGod",
     liveDemo: "/",
     color: "primary" as const,
+    category: "Personal Brand",
+    status: "Active Site",
+    metric: "95+ performance",
     features: [
       "Custom cursor effects",
       "Particle background animation",
@@ -111,8 +122,12 @@ const projects = [
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
-  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
-  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation();
+
+  const projectStats = [
+    { icon: Layers, value: "4", label: "Featured Builds" },
+    { icon: Users, value: "5+", label: "Business Users" },
+    { icon: Code, value: "10+", label: "Core Features" },
+  ];
 
   const getColorClasses = (color: string) => {
     switch (color) {
@@ -135,10 +150,7 @@ const Projects = () => {
       <div className="scan-line" />
       
       <div className="container mx-auto max-w-6xl relative z-10">
-        <div 
-          ref={headerRef}
-          className={`text-center space-y-2 md:space-y-4 mb-8 md:mb-16 transition-all duration-700 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-        >
+        <div className="text-center space-y-3 md:space-y-4 mb-8 md:mb-12 animate-fade-in">
           <Badge variant="outline" className="border-primary/50 text-primary px-3 py-0.5 text-xs md:text-sm animate-cyber-border">
             <Terminal className="w-3 h-3 mr-1 inline" />
             Portfolio
@@ -147,16 +159,26 @@ const Projects = () => {
             Featured <span className="text-gradient-primary cyber-glow">Projects</span>
           </h2>
           <p className="text-muted-foreground text-sm md:text-base max-w-lg mx-auto">
-            Click on any project to view detailed case study with features, challenges, and results
+            Real business-focused builds with live demos, measurable outcomes, and detailed case studies.
           </p>
         </div>
 
+        <div className="grid grid-cols-3 gap-3 md:gap-4 mb-8 md:mb-12">
+          {projectStats.map((stat) => {
+            const Icon = stat.icon;
+            return (
+              <div key={stat.label} className="tech-card border border-primary/20 px-3 py-4 text-center animate-scale-in">
+                <Icon className="w-4 h-4 md:w-5 md:h-5 mx-auto mb-2 text-primary" />
+                <div className="text-lg md:text-2xl font-bold text-foreground terminal-text">{stat.value}</div>
+                <div className="text-[10px] md:text-xs text-muted-foreground leading-tight">{stat.label}</div>
+              </div>
+            );
+          })}
+        </div>
+
         {/* Mobile Horizontal Scroll */}
-        <div 
-          ref={gridRef}
-          className={`md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4 transition-all duration-700 delay-200 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-        >
-          <div className="flex gap-4 min-w-max pb-4">
+        <div className="md:hidden overflow-x-auto scrollbar-hide -mx-4 px-4 animate-fade-in snap-x snap-mandatory">
+          <div className="flex gap-4 pb-4">
             {projects.map((project, index) => {
               const Icon = project.icon;
               const colors = getColorClasses(project.color);
@@ -164,13 +186,14 @@ const Projects = () => {
               return (
                 <Card 
                   key={index}
-                  className="tech-card cyber-corner overflow-hidden group cursor-pointer w-72 flex-shrink-0 animate-slide-in-bottom"
+                  className="tech-card cyber-corner overflow-hidden group cursor-pointer w-[82vw] max-w-80 flex-shrink-0 animate-slide-in-bottom snap-center"
                   style={{ animationDelay: `${index * 0.15}s` }}
                   onClick={() => setSelectedProject(project)}
                 >
-                  <div className={`p-4 ${colors.bg} border-b border-border/50 relative`}>
+                  <div className={`p-4 ${colors.bg} border-b border-border/50 relative overflow-hidden`}>
+                    <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
                     <div className="flex items-center gap-2 relative z-10">
-                      <div className={`p-2 rounded-xl ${colors.bg} ${colors.text} border ${colors.border}`}>
+                      <div className={`p-2 rounded-lg ${colors.bg} ${colors.text} border ${colors.border}`}>
                         <Icon className="w-4 h-4" />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -180,12 +203,21 @@ const Projects = () => {
                     </div>
                     <div className="absolute top-2 right-2 flex gap-1">
                       <div className="w-2 h-2 rounded-full bg-destructive/60" />
-                      <div className="w-2 h-2 rounded-full bg-yellow-500/60" />
-                      <div className="w-2 h-2 rounded-full bg-green-500/60" />
+                      <div className="w-2 h-2 rounded-full bg-secondary/60" />
+                      <div className="w-2 h-2 rounded-full bg-accent/60" />
                     </div>
                   </div>
                   
                   <CardContent className="p-4 space-y-3">
+                    <div className="flex items-center justify-between gap-2">
+                      <Badge variant="outline" className={`${colors.border} ${colors.text} text-[10px] px-2 py-0`}>
+                        {project.category}
+                      </Badge>
+                      <span className="text-[10px] text-muted-foreground">{project.metric}</span>
+                    </div>
+
+                    <p className="text-xs text-foreground/75 leading-relaxed line-clamp-2">{project.description}</p>
+
                     <div className="flex flex-wrap gap-1">
                       {project.tech.slice(0, 3).map((tech) => (
                         <Badge key={tech} variant="outline" className={`text-[10px] px-1.5 py-0 ${colors.border} ${colors.text}`}>
@@ -220,9 +252,7 @@ const Projects = () => {
         </div>
 
         {/* Desktop Grid */}
-        <div 
-          className={`hidden md:grid gap-6 md:grid-cols-2 transition-all duration-700 delay-200 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-        >
+        <div className="hidden md:grid gap-6 md:grid-cols-2 animate-fade-in">
           {projects.map((project, index) => {
             const Icon = project.icon;
             const colors = getColorClasses(project.color);
@@ -236,8 +266,9 @@ const Projects = () => {
               >
                 {/* Project Preview Image Area */}
                 <div className={`p-4 md:p-6 ${colors.bg} border-b border-border/50 relative overflow-hidden`}>
+                  <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
                   <div className="flex items-center gap-3 relative z-10">
-                    <div className={`p-2 md:p-3 rounded-xl ${colors.bg} ${colors.text} border ${colors.border} animate-pulse-glow`}>
+                    <div className={`p-2 md:p-3 rounded-lg ${colors.bg} ${colors.text} border ${colors.border} animate-pulse-glow`}>
                       <Icon className="w-5 h-5 md:w-6 md:h-6" />
                     </div>
                     <div className="flex-1">
@@ -249,12 +280,21 @@ const Projects = () => {
                   {/* Decorative elements */}
                   <div className="absolute top-2 right-2 flex gap-1.5">
                     <div className="w-2.5 h-2.5 rounded-full bg-destructive/60" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-secondary/60" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-accent/60" />
                   </div>
                 </div>
                 
                 <CardContent className="p-4 md:p-6 space-y-4">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <Badge variant="outline" className={`${colors.border} ${colors.text} text-xs`}>
+                      {project.category}
+                    </Badge>
+                    <div className="text-xs text-muted-foreground">{project.status} · {project.metric}</div>
+                  </div>
+
+                  <p className="text-sm text-foreground/75 leading-relaxed line-clamp-2">{project.description}</p>
+
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-1.5">
                     {project.tech.slice(0, 5).map((tech) => (
@@ -423,8 +463,8 @@ const Projects = () => {
                     <h4 className="font-semibold text-destructive mb-2">Challenge</h4>
                     <p className="text-sm text-foreground/70">{selectedProject.challenges}</p>
                   </div>
-                  <div className="p-4 bg-green-500/5 rounded-xl border border-green-500/20">
-                    <h4 className="font-semibold text-green-500 mb-2">Solution</h4>
+                  <div className="p-4 bg-accent/5 rounded-xl border border-accent/20">
+                    <h4 className="font-semibold text-accent mb-2">Solution</h4>
                     <p className="text-sm text-foreground/70">{selectedProject.solution}</p>
                   </div>
                 </div>
