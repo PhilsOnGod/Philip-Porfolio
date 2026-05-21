@@ -252,9 +252,7 @@ const Projects = () => {
         </div>
 
         {/* Desktop Grid */}
-        <div 
-          className={`hidden md:grid gap-6 md:grid-cols-2 transition-all duration-700 delay-200 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-        >
+        <div className="hidden md:grid gap-6 md:grid-cols-2 animate-fade-in">
           {projects.map((project, index) => {
             const Icon = project.icon;
             const colors = getColorClasses(project.color);
@@ -268,8 +266,9 @@ const Projects = () => {
               >
                 {/* Project Preview Image Area */}
                 <div className={`p-4 md:p-6 ${colors.bg} border-b border-border/50 relative overflow-hidden`}>
+                  <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
                   <div className="flex items-center gap-3 relative z-10">
-                    <div className={`p-2 md:p-3 rounded-xl ${colors.bg} ${colors.text} border ${colors.border} animate-pulse-glow`}>
+                    <div className={`p-2 md:p-3 rounded-lg ${colors.bg} ${colors.text} border ${colors.border} animate-pulse-glow`}>
                       <Icon className="w-5 h-5 md:w-6 md:h-6" />
                     </div>
                     <div className="flex-1">
@@ -281,12 +280,21 @@ const Projects = () => {
                   {/* Decorative elements */}
                   <div className="absolute top-2 right-2 flex gap-1.5">
                     <div className="w-2.5 h-2.5 rounded-full bg-destructive/60" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-secondary/60" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-accent/60" />
                   </div>
                 </div>
                 
                 <CardContent className="p-4 md:p-6 space-y-4">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <Badge variant="outline" className={`${colors.border} ${colors.text} text-xs`}>
+                      {project.category}
+                    </Badge>
+                    <div className="text-xs text-muted-foreground">{project.status} · {project.metric}</div>
+                  </div>
+
+                  <p className="text-sm text-foreground/75 leading-relaxed line-clamp-2">{project.description}</p>
+
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-1.5">
                     {project.tech.slice(0, 5).map((tech) => (
