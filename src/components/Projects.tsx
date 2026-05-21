@@ -4,11 +4,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ExternalLink, Github, TrendingUp, BarChart3, ShoppingBag, Globe, Terminal, CheckCircle, Layers, Zap, Users, Code } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const projects = [
   {
-    title: "Naja Sales Tracker",
+    title: "Naija Sales Tracker",
     shortDesc: "A comprehensive sales tracking application for businesses",
     description: "A full-featured sales and inventory management system designed to help businesses monitor revenue, manage inventory, and analyze sales performance in real-time.",
     tech: ["TypeScript", "React", "Tailwind CSS", "Supabase", "Chart.js"],
@@ -16,6 +15,9 @@ const projects = [
     github: "https://github.com/PhilsOnGod/sales-tracker-10",
     liveDemo: "https://naja-sales-tracker.lovable.app",
     color: "primary" as const,
+    category: "Business SaaS",
+    status: "Live Product",
+    metric: "40% faster tracking",
     features: [
       "Real-time dashboard analytics",
       "Product & inventory management",
@@ -41,6 +43,9 @@ const projects = [
     github: "https://github.com/PhilsOnGod/NaijaSalesTracker",
     liveDemo: "https://naija-sales-tracker.lovable.app",
     color: "secondary" as const,
+    category: "Local Commerce",
+    status: "Market Ready",
+    metric: "5+ businesses served",
     features: [
       "Naira currency support",
       "Nigerian business workflows",
@@ -66,6 +71,9 @@ const projects = [
     github: "https://github.com/PhilsOnGod",
     liveDemo: "https://scent-by-ella.lovable.app",
     color: "accent" as const,
+    category: "E-commerce",
+    status: "Launch Ready",
+    metric: "25% revenue lift",
     features: [
       "Product catalog with filtering",
       "Shopping cart & wishlist",
@@ -91,6 +99,9 @@ const projects = [
     github: "https://github.com/PhilsOnGod",
     liveDemo: "/",
     color: "primary" as const,
+    category: "Personal Brand",
+    status: "Active Site",
+    metric: "95+ performance",
     features: [
       "Custom cursor effects",
       "Particle background animation",
@@ -111,8 +122,12 @@ const projects = [
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
-  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
-  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation();
+
+  const projectStats = [
+    { icon: Layers, value: "4", label: "Featured Builds" },
+    { icon: Users, value: "5+", label: "Business Users" },
+    { icon: Code, value: "10+", label: "Core Features" },
+  ];
 
   const getColorClasses = (color: string) => {
     switch (color) {
