@@ -1,0 +1,18 @@
+# Okeke Philip Chidubem — Portfolio
+
+> Personal portfolio of Okeke Philip Chidubem, a Computer Science graduate working across software, business operations, and project coordination.
+
+## Pages
+
+- [Home](/): Hero, about, skills, experience, featured projects, testimonials, and contact details.
+
+## About
+
+Okeke Philip Chidubem is a B.Sc. Computer Science graduate from Achievers University, Owo. He has experience as a Business Manager at Chudy Bros Enterprise, Software Intern & Office Assistant at Femish IT Solution, and NYSC Service Member at Emaayo Model School. Skills include Python, Microsoft Office Suite, project coordination, business operations, client management, administrative support, content creation, and web development basics.
+
+## Contact
+
+- Email: Ongod7238@gmail.com
+- Phone: +234 907 592 7689
+- LinkedIn: https://www.linkedin.com/in/philip-okeke-947668358/
+- GitHub: https://github.com/PhilsOnGod

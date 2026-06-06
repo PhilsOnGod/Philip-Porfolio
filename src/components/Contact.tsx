@@ -85,6 +85,7 @@ const Contact = () => {
                   href="https://github.com/PhilsOnGod" 
                   target="_blank" 
                   rel="noopener noreferrer"
+                  aria-label="GitHub profile (opens in a new tab)"
                   className="p-2 md:p-3 rounded-lg md:rounded-xl glass glass-hover transition-all duration-300 hover:scale-110"
                 >
                   <Github className="w-4 h-4 md:w-5 md:h-5" />
@@ -93,6 +94,7 @@ const Contact = () => {
                   href="https://www.linkedin.com/in/philip-okeke-947668358/" 
                   target="_blank" 
                   rel="noopener noreferrer"
+                  aria-label="LinkedIn profile (opens in a new tab)"
                   className="p-2 md:p-3 rounded-lg md:rounded-xl glass glass-hover transition-all duration-300 hover:scale-110"
                 >
                   <Linkedin className="w-4 h-4 md:w-5 md:h-5" />
@@ -101,6 +103,7 @@ const Contact = () => {
                   href="https://x.com/eazi_king" 
                   target="_blank" 
                   rel="noopener noreferrer"
+                  aria-label="X (Twitter) profile (opens in a new tab)"
                   className="p-2 md:p-3 rounded-lg md:rounded-xl glass glass-hover transition-all duration-300 hover:scale-110"
                 >
                   <Twitter className="w-4 h-4 md:w-5 md:h-5" />
