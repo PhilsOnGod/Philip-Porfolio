@@ -348,6 +348,7 @@ const Projects = () => {
                       size="sm"
                       variant="ghost"
                       className="text-xs"
+                      aria-label={`View ${project.title} source on GitHub (opens in a new tab)`}
                       onClick={(e) => {
                         e.stopPropagation();
                         window.open(project.github, '_blank');
