@@ -67,6 +67,9 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+            aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-nav"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -75,7 +78,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 animate-fade-in border-t border-border/50">
+          <div id="mobile-nav" className="md:hidden py-4 animate-fade-in border-t border-border/50">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <button
