@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://creative-self-narrative.lovable.app/sitemap.xml
