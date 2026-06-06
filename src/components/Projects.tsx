@@ -239,6 +239,7 @@ const Projects = () => {
                         size="sm"
                         variant="outline"
                         className={`${colors.border} text-[10px] h-7`}
+                        aria-label={`Open ${project.title} live demo (opens in a new tab)`}
                         onClick={(e) => { e.stopPropagation(); window.open(project.liveDemo, '_blank'); }}
                       >
                         <ExternalLink className="w-3 h-3" />
