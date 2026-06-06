@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://creative-self-narrative.lovable.app/sitemap.xml
+Sitemap: https://philip-porfolio.lovable.app/sitemap.xml
