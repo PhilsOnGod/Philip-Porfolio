@@ -51,6 +51,7 @@ const Hero = () => {
                 <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
                   Okeke Philip
                   <span className="block text-gradient-primary">Chidubem</span>
+                  <span className="sr-only"> — Business & Tech Professional</span>
                 </h1>
                 
                 <p className="text-lg md:text-2xl text-muted-foreground font-medium">
@@ -88,6 +89,7 @@ const Hero = () => {
                   href="https://github.com/PhilsOnGod" 
                   target="_blank" 
                   rel="noopener noreferrer"
+                  aria-label="GitHub profile (opens in a new tab)"
                   className="p-2 md:p-3 rounded-lg md:rounded-xl glass glass-hover transition-all duration-300 hover:scale-110 group"
                 >
                   <Github className="w-5 h-5 md:w-6 md:h-6 group-hover:text-primary transition-colors" />
@@ -96,6 +98,7 @@ const Hero = () => {
                   href="https://www.linkedin.com/in/philip-okeke-947668358/" 
                   target="_blank" 
                   rel="noopener noreferrer"
+                  aria-label="LinkedIn profile (opens in a new tab)"
                   className="p-2 md:p-3 rounded-lg md:rounded-xl glass glass-hover transition-all duration-300 hover:scale-110 group"
                 >
                   <Linkedin className="w-5 h-5 md:w-6 md:h-6 group-hover:text-primary transition-colors" />
@@ -104,6 +107,7 @@ const Hero = () => {
                   href="https://x.com/eazi_king" 
                   target="_blank" 
                   rel="noopener noreferrer"
+                  aria-label="X (Twitter) profile (opens in a new tab)"
                   className="p-2 md:p-3 rounded-lg md:rounded-xl glass glass-hover transition-all duration-300 hover:scale-110 group"
                 >
                   <Twitter className="w-5 h-5 md:w-6 md:h-6 group-hover:text-primary transition-colors" />
